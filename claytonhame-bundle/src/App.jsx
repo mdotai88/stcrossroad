@@ -44,6 +44,7 @@ const PROPERTY = {
 };
 
 const LOGO_URL = "https://ffour.co.uk/wp-content/uploads/2023/11/FFOUR-Estates-Logo-Label-Tag.png";
+const LOGO_URL_SCROLLED = "https://ffour.co.uk/wp-content/uploads/2026/05/FFOUR-ESTATES-Logo-Transparent-GMAIL.png";
 const KF_LOGO_URL = "https://ffour.co.uk/wp-content/uploads/2026/05/Knight_Frank_Logo.svg.png";
 
 const IMG = {
@@ -84,7 +85,7 @@ const FLOORS = {
         name: "Kitchen & Dining",
         dim: `8.00 × 4.22m  ·  26'3" × 13'10"`,
         image: IMG.kitchen,
-        note: "Rebuilt for modern living as one open-plan room. Bespoke shaker cabinetry, central island, chevron oak floor, and full-width aluminium bifold doors that fold back onto the patio.",
+        note: "Rebuilt for modern living as one open-plan room. Bespoke shaker cabinetry, central island, chevron oak floor, and full-width glazed doors that fold back onto the patio.",
         poly: "666,2159 1083,2161 1081,1361 663,1360",
       },
       {
@@ -96,20 +97,20 @@ const FLOORS = {
         poly: "537,2196 538,2286 574,2286 574,2376 893,2377 893,2197",
       },
       {
-        id: "wc",
-        name: "WC",
-        dim: "Cloakroom · brass fittings",
+        id: "wc-boot",
+        name: "WC & Boot Room",
+        dim: "Cloakroom and banquette seating",
         image: IMG.wcBoot,
-        note: "Cloakroom with deep green tiling and brass fittings, just off the hallway.",
-        poly: "575,2392 725,2393 725,2558 574,2560",
+        note: "Deep green tiling, brass fittings, banquette seating for boots — exactly where you need it after walking dogs or coming back from the meadows.",
+        poly: "575,2392 893,2396 894,2558 574,2560",
       },
       {
-        id: "boot",
-        name: "Boot Room",
-        dim: "By the rear entry",
-        image: IMG.wcBoot,
-        note: "Banquette seating for boots and a coat hook run — exactly where you need it after walking dogs or coming back from the meadows.",
-        poly: "741,2393 893,2393 892,2557 740,2559",
+        id: "hallway",
+        name: "Entrance Hallway",
+        dim: "Original features · chevron oak",
+        image: IMG.hallway,
+        note: "Original cornicing, wainscoting and chevron oak underfoot. The staircase sweeps up to the right, with a clear sightline through to the kitchen and garden beyond.",
+        poly: "910,2197 1081,2197 1080,2558 910,2558",
       },
       {
         id: "living",
@@ -118,13 +119,6 @@ const FLOORS = {
         image: IMG.drawing,
         note: "South-facing with high ceilings, panelled walls and a bay window framing the light. Original architecture preserved, finishes thoroughly modernised.",
         poly: "1084,2970 974,2970 897,3071 704,3074 620,2970 539,2968 537,2861 585,2860 585,2714 539,2713 537,2588 1081,2589",
-      },
-      {
-        id: "hallway",
-        name: "Entrance & Hallway",
-        dim: "Original features · chevron oak",
-        image: IMG.hallway,
-        note: "Original cornicing, wainscoting and chevron oak underfoot. The staircase sweeps up to the right, with a clear sightline through to the kitchen and garden beyond.",
       },
     ],
   },
@@ -240,12 +234,12 @@ const SPECIFICATION = [
   "Re-wired and re-plumbed throughout",
   "New gas central heating system & boiler",
   "Bespoke kitchen with integrated appliances",
-  "Herringbone engineered oak flooring",
-  "Full-width aluminium glazed doors to garden",
-  "Three new bathrooms with porcelain tiling",
-  "Replacement sash windows where required",
+  "Herringbone flooring",
+  "Full-width glazed doors to garden",
+  "Three brand new bathrooms with fog-free mirrors",
+  "All windows upgraded",
   "Tiered rear garden — lower patio + upper terrace",
-  "Original cornicing & period features retained",
+  "Traditional cornicing & period features",
   "Brass fixtures & fittings throughout",
   "10-year Build Zone structural warranty",
   "EPC: 80 C (potential 86 B)",
@@ -603,6 +597,7 @@ export default function Claytonhame() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [mobileDetailOpen, setMobileDetailOpen] = useState(false);
   const roomDetailRef = useRef(null);
   const [messages, setMessages] = useState([
     {
@@ -642,11 +637,8 @@ export default function Claytonhame() {
 
   const handleRoomSelect = (roomId) => {
     setSelectedRoom(roomId);
-    // On mobile, scroll the room detail card into view so the image change is visible
-    if (window.innerWidth < 1024 && roomDetailRef.current) {
-      setTimeout(() => {
-        roomDetailRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 50);
+    if (window.innerWidth < 1024) {
+      setMobileDetailOpen(true);
     }
   };
 
@@ -772,24 +764,46 @@ export default function Claytonhame() {
         <nav
           className="fixed top-0 left-0 right-0 z-40 transition-all duration-300"
           style={{
-            background: isScrolled ? "rgba(245, 239, 230, 0.92)" : "transparent",
+            background: isScrolled ? "rgba(245, 239, 230, 0.94)" : "transparent",
             backdropFilter: isScrolled ? "blur(10px)" : "none",
             borderBottom: isScrolled ? "1px solid var(--line)" : "1px solid transparent",
           }}
         >
-          <div className="max-w-6xl mx-auto px-5 md:px-6 flex items-start justify-between" style={{ minHeight: 86 }}>
-            {/* Logo — flush top, hanging tag style */}
-            <a href="#top" className="block flex-shrink-0" style={{ marginTop: 0 }}>
+          <div
+            className="max-w-6xl mx-auto pl-4 md:pl-6 pr-4 md:pr-6 flex items-start justify-between transition-all duration-300"
+            style={{ minHeight: isScrolled ? 64 : 86 }}
+          >
+            {/* Logo — swaps between tag (top) and horizontal (scrolled) */}
+            <a href="#top" className="block flex-shrink-0 relative" style={{ marginTop: 0 }}>
               <img
                 src={LOGO_URL}
                 alt="ffour Estates"
-                className="block"
-                style={{ height: 96, width: "auto", marginTop: 0, display: "block" }}
+                className="block transition-all duration-300"
+                style={{
+                  height: isScrolled ? 0 : "min(133px, 22vw)",
+                  width: "auto",
+                  marginTop: 0,
+                  display: "block",
+                  opacity: isScrolled ? 0 : 1,
+                  transform: isScrolled ? "translateY(-10px)" : "translateY(0)",
+                }}
+              />
+              <img
+                src={LOGO_URL_SCROLLED}
+                alt="ffour Estates"
+                className="block absolute top-0 left-0 transition-all duration-300"
+                style={{
+                  height: isScrolled ? 38 : 0,
+                  width: "auto",
+                  marginTop: isScrolled ? 13 : 0,
+                  opacity: isScrolled ? 1 : 0,
+                  pointerEvents: isScrolled ? "auto" : "none",
+                }}
               />
             </a>
 
             {/* Right side */}
-            <div className="flex items-center gap-6 self-center pb-1">
+            <div className="flex items-center gap-3 md:gap-6 self-center pb-1">
               {/* Desktop nav */}
               <div
                 className="hidden md:flex gap-6 text-sm transition-colors"
@@ -815,11 +829,11 @@ export default function Claytonhame() {
               {/* Mobile hamburger */}
               <button
                 onClick={() => setMobileMenuOpen(true)}
-                className="md:hidden p-2 -mr-2"
+                className="md:hidden p-2"
                 aria-label="Open menu"
                 style={{ color: isScrolled ? "var(--ink)" : "var(--cream)" }}
               >
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <line x1="3" y1="8" x2="21" y2="8" />
                   <line x1="3" y1="16" x2="21" y2="16" />
                 </svg>
@@ -894,13 +908,17 @@ export default function Claytonhame() {
           />
           <div className="absolute inset-0 grain opacity-30 pointer-events-none" />
           <div className="relative max-w-6xl mx-auto px-6 pt-32 pb-24" style={{ minHeight: "92vh" }}>
-            <div
-              className="flex items-center gap-3 text-xs uppercase tracking-[0.25em] mb-8"
+            <a
+              href="https://ffour.co.uk"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] mb-8 hover:opacity-80 transition-opacity group"
               style={{ color: "var(--gold-soft)" }}
             >
-              <span className="block w-8 h-px" style={{ background: "var(--gold-soft)" }} />
+              <span className="block w-8 h-px transition-all group-hover:w-12" style={{ background: "var(--gold-soft)" }} />
               <span>ffour Estates · A new chapter</span>
-            </div>
+              <ArrowRight className="w-3 h-3 opacity-60" />
+            </a>
             <h1
               className="display text-6xl md:text-8xl leading-[0.95] font-light mb-6"
               style={{ color: "#F5EFE6" }}
@@ -1043,7 +1061,7 @@ export default function Claytonhame() {
               <div
                 ref={chatEndRef}
                 className="chat-scroll p-4 md:p-8 space-y-4 md:space-y-5 overflow-y-auto"
-                style={{ height: "min(60vh, 420px)" }}
+                style={{ height: "min(40dvh, 380px)" }}
               >
                 {messages.map((m, i) => (
                   <div
@@ -1131,28 +1149,31 @@ export default function Claytonhame() {
               </div>
             </div>
 
-            {/* Floor tabs */}
-            <div className="flex border-b mb-10" style={{ borderColor: "var(--line)" }}>
-              {Object.entries(FLOORS).map(([key, floor]) => (
-                <button
-                  key={key}
-                  onClick={() => {
-                    setActiveFloor(key);
-                    setSelectedRoom(null);
-                    setHoveredRoom(null);
-                  }}
-                  className="px-6 py-4 text-sm transition-all relative"
-                  style={{
-                    color: activeFloor === key ? "var(--ink)" : "var(--ink-soft)",
-                    fontWeight: activeFloor === key ? 500 : 400,
-                  }}
-                >
-                  {floor.label}
-                  {activeFloor === key && (
-                    <span className="absolute bottom-0 left-0 right-0 h-px" style={{ background: "var(--ink)" }} />
-                  )}
-                </button>
-              ))}
+            {/* Floor tabs as segmented control */}
+            <div className="flex justify-center mb-10">
+              <div
+                className="inline-flex p-1 rounded-full"
+                style={{ background: "var(--cream-deep)", border: "1px solid var(--line)" }}
+              >
+                {Object.entries(FLOORS).map(([key, floor]) => (
+                  <button
+                    key={key}
+                    onClick={() => {
+                      setActiveFloor(key);
+                      setSelectedRoom(null);
+                      setHoveredRoom(null);
+                    }}
+                    className="px-4 md:px-6 py-2.5 text-xs md:text-sm rounded-full transition-all"
+                    style={{
+                      background: activeFloor === key ? "var(--ink)" : "transparent",
+                      color: activeFloor === key ? "white" : "var(--ink-soft)",
+                      fontWeight: activeFloor === key ? 600 : 400,
+                    }}
+                  >
+                    {floor.label}
+                  </button>
+                ))}
+              </div>
             </div>
 
             <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -1162,7 +1183,7 @@ export default function Claytonhame() {
                   key={activeFloor + "-plan"}
                   className="fade-in mx-auto relative"
                   style={{
-                    width: `min(100%, calc(85vh * ${currentFloor.plan.width} / ${currentFloor.plan.height}))`,
+                    width: `min(100%, calc(70vh * ${currentFloor.plan.width} / ${currentFloor.plan.height}))`,
                     aspectRatio: `${currentFloor.plan.width} / ${currentFloor.plan.height}`,
                   }}
                 >
@@ -1216,8 +1237,8 @@ export default function Claytonhame() {
                 </p>
               </div>
 
-              {/* RIGHT: Room detail panel */}
-              <div ref={roomDetailRef} className="lg:sticky lg:top-28 scroll-mt-24">
+              {/* RIGHT: Room detail panel — desktop only */}
+              <div ref={roomDetailRef} className="hidden lg:block lg:sticky lg:top-28 scroll-mt-24">
                 <div
                   key={selectedRoomObj?.id}
                   className="rounded-2xl overflow-hidden fade-in"
@@ -1289,8 +1310,114 @@ export default function Claytonhame() {
                 </div>
               </div>
             </div>
+
+            {/* MOBILE: chip list + brochure link below the plan */}
+            <div className="lg:hidden mt-8">
+              <div className="text-[10px] uppercase tracking-[0.25em] mb-4 text-center" style={{ color: "var(--ink-soft)" }}>
+                Or pick a room
+              </div>
+              <div className="flex flex-wrap gap-2 justify-center mb-6">
+                {currentFloor.rooms.map((room) => {
+                  const isActive = selectedRoomObj?.id === room.id;
+                  return (
+                    <button
+                      key={room.id}
+                      onClick={() => handleRoomSelect(room.id)}
+                      className="text-xs px-3 py-1.5 rounded-full border transition-all"
+                      style={{
+                        background: isActive ? "var(--ink)" : "transparent",
+                        color: isActive ? "white" : "var(--ink-soft)",
+                        borderColor: isActive ? "var(--ink)" : "var(--line)",
+                      }}
+                    >
+                      {room.name}
+                    </button>
+                  );
+                })}
+              </div>
+              <div className="flex justify-center">
+                <a
+                  href={PROPERTY.brochureUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-xs inline-flex items-center gap-1.5 hover:underline"
+                  style={{ color: "var(--ink-soft)" }}
+                >
+                  <Download className="w-3.5 h-3.5" /> Download the official brochure
+                </a>
+              </div>
+            </div>
           </div>
         </section>
+
+        {/* MOBILE ROOM DETAIL OVERLAY */}
+        {mobileDetailOpen && selectedRoomObj && (
+          <div
+            className="fixed inset-0 z-50 lg:hidden fade-in flex flex-col"
+            style={{ background: "var(--cream)" }}
+          >
+            <div className="flex items-center justify-between p-4 border-b" style={{ borderColor: "var(--line)" }}>
+              <div>
+                <div className="text-[10px] uppercase tracking-[0.25em]" style={{ color: "var(--gold)" }}>
+                  {currentFloor.label}
+                </div>
+                <div className="display text-xl">{selectedRoomObj.name}</div>
+              </div>
+              <button
+                onClick={() => setMobileDetailOpen(false)}
+                className="p-2 -mr-2"
+                aria-label="Close"
+                style={{ color: "var(--ink)" }}
+              >
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <line x1="5" y1="5" x2="19" y2="19" />
+                  <line x1="19" y1="5" x2="5" y2="19" />
+                </svg>
+              </button>
+            </div>
+            <div className="flex-1 overflow-y-auto">
+              {selectedRoomObj.image && (
+                <div className="aspect-[16/10] overflow-hidden">
+                  <img
+                    src={selectedRoomObj.image}
+                    alt={selectedRoomObj.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              )}
+              <div className="p-5">
+                <div className="text-sm mb-4" style={{ color: "var(--ink-soft)" }}>
+                  {selectedRoomObj.dim}
+                </div>
+                <p className="text-base leading-relaxed mb-6" style={{ color: "var(--ink-soft)" }}>
+                  {selectedRoomObj.note}
+                </p>
+                <p className="text-xs italic mb-6" style={{ color: "var(--ink-soft)" }}>
+                  Computer-generated image for illustrative purposes only
+                </p>
+
+                {/* Quick chip list for hopping between rooms */}
+                <div className="pt-5 border-t" style={{ borderColor: "var(--line)" }}>
+                  <div className="text-[10px] uppercase tracking-[0.25em] mb-3" style={{ color: "var(--ink-soft)" }}>
+                    Other rooms on this floor
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {currentFloor.rooms.filter((r) => r.id !== selectedRoomObj.id).map((room) => (
+                      <button
+                        key={room.id}
+                        onClick={() => setSelectedRoom(room.id)}
+                        className="text-xs px-3 py-1.5 rounded-full border"
+                        style={{ background: "transparent", color: "var(--ink-soft)", borderColor: "var(--line)" }}
+                      >
+                        {room.name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* SPECIFICATION + EPC */}
         <section
@@ -1347,7 +1474,7 @@ export default function Claytonhame() {
                   The rear garden has been re-landscaped into two thoughtful zones. A sheltered lower patio off the kitchen, with built-in seating and brickwork that picks up the warmth of the house.
                 </p>
                 <p className="text-lg leading-relaxed" style={{ color: "var(--ink-soft)" }}>
-                  A few steps up sits a private raised terrace — a second outdoor room, framed by mature planting along the walls. Enough for a table of six, supper outside, the rest of an evening still to enjoy.
+                  A few steps up sits a private raised terrace — a second outdoor space.
                 </p>
               </div>
             </div>
@@ -1735,6 +1862,11 @@ function EPCWidget() {
             {bands.map((b) => {
               const isCurrent = b.letter === PROPERTY.epc.currentBand;
               const isPotential = b.letter === PROPERTY.epc.potentialBand;
+              const labelText = isCurrent
+                ? `${b.range}  ·  Now ${current}`
+                : isPotential
+                ? `${b.range}  ·  Potential ${potential}`
+                : b.range;
               return (
                 <div key={b.letter} className="flex items-center gap-2 md:gap-3">
                   <div
@@ -1745,46 +1877,32 @@ function EPCWidget() {
                   </div>
                   <div className="flex-1 relative">
                     <div
-                      className="h-7 md:h-8 flex items-center px-2 md:px-3 text-[10px] md:text-xs font-medium relative"
+                      className="h-8 md:h-9 flex items-center px-2.5 md:px-3 text-[10px] md:text-xs font-medium relative"
                       style={{
                         background: b.color,
                         width: `${b.width}%`,
                         color: ["A", "B", "C"].includes(b.letter) ? "white" : "#1C1A17",
                         clipPath: "polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%)",
+                        fontWeight: isCurrent || isPotential ? 700 : 500,
+                        boxShadow: isCurrent ? "inset 0 0 0 2px rgba(31,31,31,0.7)" : isPotential ? "inset 0 0 0 2px rgba(31,31,31,0.4)" : "none",
                       }}
                     >
-                      <span>{b.range}</span>
+                      <span className="whitespace-nowrap">{labelText}</span>
                     </div>
-                    {isCurrent && (
-                      <div
-                        className="absolute top-1/2 -translate-y-1/2"
-                        style={{ left: `calc(${b.width}% + 6px)` }}
-                      >
-                        <div
-                          className="px-1.5 md:px-2 py-0.5 md:py-1 rounded text-[9px] md:text-[10px] tracking-wider uppercase font-semibold whitespace-nowrap"
-                          style={{ background: "var(--ink)", color: "white" }}
-                        >
-                          Now · {current}
-                        </div>
-                      </div>
-                    )}
-                    {isPotential && (
-                      <div
-                        className="absolute top-1/2 -translate-y-1/2"
-                        style={{ left: `calc(${b.width}% + 6px)` }}
-                      >
-                        <div
-                          className="px-1.5 md:px-2 py-0.5 md:py-1 rounded text-[9px] md:text-[10px] tracking-wider uppercase font-semibold border whitespace-nowrap"
-                          style={{ borderColor: "var(--ink)", color: "var(--ink)", background: "white" }}
-                        >
-                          Potential · {potential}
-                        </div>
-                      </div>
-                    )}
                   </div>
                 </div>
               );
             })}
+          </div>
+          <div className="flex gap-4 mt-4 text-xs" style={{ color: "var(--ink-soft)" }}>
+            <span className="inline-flex items-center gap-1.5">
+              <span className="inline-block w-3 h-3 rounded-sm border-2" style={{ borderColor: "rgba(31,31,31,0.7)" }} />
+              Now ({current} {PROPERTY.epc.currentBand})
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <span className="inline-block w-3 h-3 rounded-sm border-2" style={{ borderColor: "rgba(31,31,31,0.4)" }} />
+              Potential ({potential} {PROPERTY.epc.potentialBand})
+            </span>
           </div>
         </div>
 
