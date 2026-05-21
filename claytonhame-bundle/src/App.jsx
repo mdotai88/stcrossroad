@@ -747,6 +747,8 @@ export default function Claytonhame() {
     const el = chatBoxRef.current;
     if (!chatFocused || !vv || !el || window.innerWidth >= 1024) return;
 
+    let keyboardSeen = false;
+
     const resetStyles = () => {
       ["position", "left", "right", "bottom", "zIndex", "borderRadius", "maxHeight"].forEach((p) => {
         el.style[p] = "";
@@ -755,22 +757,26 @@ export default function Claytonhame() {
 
     const apply = () => {
       const bottomOffset = window.innerHeight - vv.height - vv.offsetTop;
-      // If the keyboard is no longer visible, un-pin and clear focus
-      if (bottomOffset < 30) {
+      if (bottomOffset >= 30) {
+        // Keyboard is up — pin to its top
+        keyboardSeen = true;
+        el.style.position = "fixed";
+        el.style.left = "0";
+        el.style.right = "0";
+        el.style.bottom = `${bottomOffset}px`;
+        el.style.zIndex = "60";
+        el.style.borderRadius = "0";
+        el.style.maxHeight = `${vv.height}px`;
+        return;
+      }
+      // Keyboard not visible. Only un-pin if we previously saw one during this focus session —
+      // otherwise we'd blur the input before iOS has had a chance to bring the keyboard up.
+      if (keyboardSeen) {
         resetStyles();
         if (chatInputRef.current && document.activeElement === chatInputRef.current) {
           chatInputRef.current.blur();
         }
-        return;
       }
-      // Keyboard is up — pin to its top
-      el.style.position = "fixed";
-      el.style.left = "0";
-      el.style.right = "0";
-      el.style.bottom = `${bottomOffset}px`;
-      el.style.zIndex = "60";
-      el.style.borderRadius = "0";
-      el.style.maxHeight = `${vv.height}px`;
     };
 
     apply();
