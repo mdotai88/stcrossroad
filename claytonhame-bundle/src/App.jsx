@@ -394,7 +394,7 @@ const KB = [
     id: "heating",
     primary: ["heating", "boiler", "radiator", "underfloor", "gas", "warm"],
     secondary: [],
-    answer: "Brand new gas central heating system. The house was re-plumbed throughout during the refurbishment, with new radiators and a new boiler.",
+    answer: "Brand new gas central heating system — the house was re-plumbed throughout during the refurbishment, with new radiators and a new boiler. Underfloor heating is fitted in selected areas of the home for comfort and efficiency.",
   },
   {
     id: "warranty",
@@ -520,9 +520,101 @@ const KB = [
   },
   {
     id: "developer",
-    primary: ["ffour", "developer", "who built", "who refurbished", "builder"],
+    primary: ["ffour", "developer", "who built", "who refurbished", "builder", "renovation team"],
     secondary: [],
-    answer: "ffour Estates — a Winchester-based developer focused on careful refurbishments of period homes. Their tagline: \"Beautiful homes for easy living.\"",
+    answer: "ffour Estates — a Winchester-based developer focused on careful refurbishments of period homes, working with an experienced construction team specialising in high-quality residential work. Their tagline: \"Beautiful homes for easy living.\"",
+  },
+
+  // --- Detail & specification ---
+  {
+    id: "ceiling-height",
+    primary: ["ceiling", "ceilings", "high ceiling", "tall ceiling"],
+    secondary: ["height", "high", "tall", "spacious"],
+    answer: "Several rooms benefit from impressive ceiling heights — the master bedroom reaches around 3 metres, framed by bespoke illuminated coving. They make the principal spaces feel especially bright and generous.",
+  },
+  {
+    id: "worktops",
+    primary: ["worktop", "worktops", "countertop", "countertops", "quartz", "marble"],
+    secondary: ["kitchen", "surface"],
+    answer: "Quartz worktops throughout the kitchen — durable, clean and contemporary, picked to last.",
+  },
+  {
+    id: "appliances",
+    primary: ["appliances", "appliance", "integrated appliance", "fridge", "oven", "dishwasher", "hob", "extractor"],
+    secondary: ["integrated", "built-in", "brand", "miele", "neff", "bosch"],
+    answer: "All appliances are integrated for a seamless, uncluttered look across the kitchen and utility. Knight Frank can share the specific brands and specs on request.",
+  },
+  {
+    id: "design-features",
+    primary: ["design", "details", "panel", "panels", "panelled", "wainscot", "joinery", "moulding", "coving"],
+    secondary: ["luxury", "boutique", "finish", "feature lighting", "interior"],
+    answer: "Deliberately rich in detail: panelled walls and traditional cornicing throughout the principal rooms, bespoke arched joinery in the master suite, illuminated coving in the master bedroom, herringbone tiling in the bathrooms, brass fittings, and considered ambient lighting. It reads as a luxury home, not just a refurbished one.",
+  },
+  {
+    id: "different",
+    primary: ["different", "special", "stand out", "standout", "what makes", "why this house", "compare"],
+    secondary: ["nearby", "neighbour", "other refurb"],
+    answer: "What sets Claytonhame apart from typical St Cross refurbs is the attention to architectural detail and atmosphere — illuminated coving, panelled walls, bespoke joinery, deep green herringbone tiles, brass fittings, considered feature lighting. Most refurbs deliver the basics; this one delivers the feeling.",
+  },
+
+  // --- Practical living ---
+  {
+    id: "low-maintenance-garden",
+    primary: ["low maintenance", "low-maintenance", "easy garden", "upkeep", "maintain garden"],
+    secondary: ["garden", "outdoor", "weekend"],
+    answer: "The landscaping has been designed to balance visual appeal with practical maintenance — well-defined planting beds and considered hard landscaping, so the garden looks looked-after without needing every weekend.",
+  },
+  {
+    id: "entertaining",
+    primary: ["entertain", "entertaining", "party", "host", "hosting", "dinner party", "gathering"],
+    secondary: ["indoor outdoor", "summer", "guests"],
+    answer: "Built around entertaining — the open-plan kitchen and dining flow out through full-width glazed doors onto the lower patio, with the upper terrace beyond. Indoor and outdoor work together for summer dinners or larger gatherings.",
+  },
+  {
+    id: "storage",
+    primary: ["storage", "store", "cupboard", "cupboards", "wardrobe", "wardrobes", "closet", "closets"],
+    secondary: ["fitted", "built-in", "space"],
+    answer: "Storage has been carefully considered throughout — walk-through fitted dressing rooms in both principal bedrooms, fitted utility cabinetry, banquette boot storage, and bespoke joinery in the master suite. Nowhere feels short on space to put things away.",
+  },
+  {
+    id: "family",
+    primary: ["family", "families", "children", "kids", "child"],
+    secondary: ["suitable", "ideal", "playroom", "school"],
+    answer: "Tailored to family life — four bedrooms across two upper floors give everyone their own space, the open-plan kitchen-dining is the natural hub, and the school choices in Winchester are exceptional (St Faith's, Stanmore, The Pilgrims', Winchester College all within walking distance).",
+  },
+
+  // --- Buying ---
+  {
+    id: "chain-free",
+    primary: ["chain", "chain free", "onward chain", "no chain"],
+    secondary: ["complete", "completion"],
+    answer: "Claytonhame is a developer sale — there's no onward chain from the seller's side. Knight Frank can confirm the latest position when you get in touch.",
+  },
+  {
+    id: "planning",
+    primary: ["planning", "permission", "permitted", "consent", "lawful", "building control"],
+    secondary: ["development", "extension", "rear extension"],
+    answer: "All works requiring consent have been properly considered and approved during the redevelopment. Knight Frank holds the full documentation for review.",
+  },
+
+  // --- Lifestyle ---
+  {
+    id: "feels-like",
+    primary: ["feel", "feels", "atmosphere", "vibe", "mood", "what's it like to live"],
+    secondary: ["calm", "warm", "comfortable", "homely"],
+    answer: "The intention was calm, warm and effortlessly functional. Quietly luxurious — not flashy. Equally suited to a busy family weekend, entertaining friends, or a quiet evening at home.",
+  },
+  {
+    id: "ideal-for",
+    primary: ["ideal for", "who is this for", "who is it for", "suited to", "right for", "target buyer"],
+    secondary: ["buyer", "owner", "audience"],
+    answer: "Likely to appeal most to: families wanting a turnkey Winchester home, professional couples looking for a quieter life within easy reach of London, downsizers from larger country houses, and those moving out of London for the schools and the commute. The combination of period character, modern luxury and walking distance to everything is rare.",
+  },
+  {
+    id: "vision",
+    primary: ["vision", "philosophy", "why renovate", "approach", "intention", "purpose"],
+    secondary: ["developer", "design", "goal"],
+    answer: "The brief was to balance form, function, flow and feeling — to honour what was already great about the house (its period bones, position and light) and add what was missing (proper kitchen-dining space, ensuites for the principal bedrooms, considered finishes, modern energy performance). The result is a home that genuinely feels nice to spend time in.",
   },
 ];
 
@@ -600,6 +692,9 @@ export default function Claytonhame() {
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [mobileDetailOpen, setMobileDetailOpen] = useState(false);
   const roomDetailRef = useRef(null);
+  const sheetRef = useRef(null);
+  const touchStartY = useRef(0);
+  const touchOffset = useRef(0);
   const [messages, setMessages] = useState([
     {
       role: "assistant",
@@ -610,6 +705,9 @@ export default function Claytonhame() {
   const [chatInput, setChatInput] = useState("");
   const [chatLoading, setChatLoading] = useState(false);
   const chatEndRef = useRef(null);
+  const chatBoxRef = useRef(null);
+  const chatInputRef = useRef(null);
+  const [chatFocused, setChatFocused] = useState(false);
 
   const [price, setPrice] = useState(PROPERTY.guidePrice);
   const [depositPct, setDepositPct] = useState(25);
@@ -631,6 +729,75 @@ export default function Claytonhame() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Lock body scroll while the mobile floorplan drawer is open
+  useEffect(() => {
+    if (mobileDetailOpen) {
+      const original = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = original;
+      };
+    }
+  }, [mobileDetailOpen]);
+
+  // On mobile: pin the chat box to the bottom of the visual viewport when the input is focused,
+  // so the input stays just above the keyboard.
+  useEffect(() => {
+    const vv = window.visualViewport;
+    const el = chatBoxRef.current;
+    if (!chatFocused || !vv || !el || window.innerWidth >= 1024) return;
+
+    const apply = () => {
+      const bottomOffset = window.innerHeight - vv.height - vv.offsetTop;
+      el.style.position = "fixed";
+      el.style.left = "0";
+      el.style.right = "0";
+      el.style.bottom = `${bottomOffset}px`;
+      el.style.zIndex = "60";
+      el.style.borderRadius = "0";
+      el.style.maxHeight = `${vv.height}px`;
+    };
+
+    apply();
+    vv.addEventListener("resize", apply);
+    vv.addEventListener("scroll", apply);
+
+    return () => {
+      vv.removeEventListener("resize", apply);
+      vv.removeEventListener("scroll", apply);
+      ["position", "left", "right", "bottom", "zIndex", "borderRadius", "maxHeight"].forEach((p) => {
+        el.style[p] = "";
+      });
+    };
+  }, [chatFocused]);
+
+  // Swipe-to-dismiss handlers for the bottom-sheet drawer
+  const onSheetTouchStart = (e) => {
+    touchStartY.current = e.touches[0].clientY;
+    touchOffset.current = 0;
+    if (sheetRef.current) {
+      sheetRef.current.style.transition = "none";
+    }
+  };
+  const onSheetTouchMove = (e) => {
+    if (!sheetRef.current) return;
+    const dy = e.touches[0].clientY - touchStartY.current;
+    if (dy > 0) {
+      touchOffset.current = dy;
+      sheetRef.current.style.transform = `translateY(${dy}px)`;
+    }
+  };
+  const onSheetTouchEnd = () => {
+    if (!sheetRef.current) return;
+    sheetRef.current.style.transition = "transform 0.3s cubic-bezier(0.25, 1, 0.5, 1)";
+    if (touchOffset.current > 100) {
+      setMobileDetailOpen(false);
+    } else {
+      sheetRef.current.style.transform = "translateY(0)";
+    }
+    touchOffset.current = 0;
+  };
+
   const currentFloor = FLOORS[activeFloor];
   const selectedRoomObj = selectedRoom
     ? currentFloor.rooms.find((r) => r.id === selectedRoom)
@@ -639,7 +806,8 @@ export default function Claytonhame() {
   const handleRoomSelect = (roomId) => {
     setSelectedRoom(roomId);
     if (window.innerWidth < 1024) {
-      setMobileDetailOpen(true);
+      // Brief delay so the user sees the room highlight on the plan before the drawer rises
+      setTimeout(() => setMobileDetailOpen(true), 250);
     }
   };
 
@@ -1068,6 +1236,7 @@ export default function Claytonhame() {
             </div>
 
             <div
+              ref={chatBoxRef}
               className="rounded-2xl border overflow-hidden"
               style={{ borderColor: "var(--line)", background: "var(--cream)" }}
             >
@@ -1124,29 +1293,29 @@ export default function Claytonhame() {
 
               <div className="border-t flex items-center" style={{ borderColor: "var(--line)" }}>
                 <input
+                  ref={chatInputRef}
                   type="text"
                   value={chatInput}
                   onChange={(e) => setChatInput(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-                  onFocus={(e) => {
-                    // On mobile, give iOS time to bring up keyboard, then scroll the chat into view
-                    setTimeout(() => {
-                      if (window.innerWidth < 768) {
-                        e.target.scrollIntoView({ block: "center", behavior: "smooth" });
-                      }
-                    }, 350);
+                  onFocus={() => setChatFocused(true)}
+                  onBlur={() => {
+                    // small delay so a Send button tap doesn't immediately un-pin
+                    setTimeout(() => setChatFocused(false), 150);
                   }}
                   placeholder="Ask about rooms, finishes, the area…"
                   className="flex-1 px-5 md:px-6 py-4 md:py-5 bg-transparent outline-none"
                   style={{ color: "var(--ink)", fontSize: 16 }}
                 />
                 <button
+                  onMouseDown={(e) => e.preventDefault()}
                   onClick={() => sendMessage()}
-                  disabled={chatLoading || !chatInput.trim()}
-                  className="mr-3 p-3 rounded-full transition-all disabled:opacity-30"
-                  style={{ background: "var(--accent)", color: "white" }}
+                  disabled={!chatInput.trim() || chatLoading}
+                  className="p-4 md:p-5 disabled:opacity-30 transition-opacity"
+                  style={{ color: "var(--ink)" }}
+                  aria-label="Send"
                 >
-                  <Send className="w-4 h-4" />
+                  <Send className="w-5 h-5" strokeWidth={1.5} />
                 </button>
               </div>
             </div>
@@ -1379,6 +1548,7 @@ export default function Claytonhame() {
             onClick={() => setMobileDetailOpen(false)}
           >
             <div
+              ref={sheetRef}
               onClick={(e) => e.stopPropagation()}
               className="w-full max-w-md flex flex-col overflow-hidden"
               style={{
@@ -1390,32 +1560,39 @@ export default function Claytonhame() {
                 animation: "slideUp 0.3s cubic-bezier(0.25, 1, 0.5, 1)",
               }}
             >
-              {/* Drag handle visual */}
-              <div className="flex justify-center pt-3 pb-1">
-                <div
-                  className="w-10 h-1 rounded-full"
-                  style={{ background: "var(--line)" }}
-                />
-              </div>
-
-              <div className="flex items-center justify-between px-5 py-3 border-b" style={{ borderColor: "var(--line)" }}>
-                <div>
-                  <div className="text-[10px] uppercase tracking-[0.25em]" style={{ color: "var(--gold)" }}>
-                    {currentFloor.label}
-                  </div>
-                  <div className="display text-lg">{selectedRoomObj.name}</div>
+              {/* Drag handle + header — swipe-to-dismiss area */}
+              <div
+                onTouchStart={onSheetTouchStart}
+                onTouchMove={onSheetTouchMove}
+                onTouchEnd={onSheetTouchEnd}
+                style={{ touchAction: "none" }}
+              >
+                <div className="flex justify-center pt-3 pb-1">
+                  <div
+                    className="w-10 h-1 rounded-full"
+                    style={{ background: "var(--line)" }}
+                  />
                 </div>
-                <button
-                  onClick={() => setMobileDetailOpen(false)}
-                  className="p-2 -mr-2"
-                  aria-label="Close"
-                  style={{ color: "var(--ink)" }}
-                >
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <line x1="5" y1="5" x2="19" y2="19" />
-                    <line x1="19" y1="5" x2="5" y2="19" />
-                  </svg>
-                </button>
+
+                <div className="flex items-center justify-between px-5 py-3 border-b" style={{ borderColor: "var(--line)" }}>
+                  <div>
+                    <div className="text-[10px] uppercase tracking-[0.25em]" style={{ color: "var(--gold)" }}>
+                      {currentFloor.label}
+                    </div>
+                    <div className="display text-lg">{selectedRoomObj.name}</div>
+                  </div>
+                  <button
+                    onClick={() => setMobileDetailOpen(false)}
+                    className="p-2 -mr-2"
+                    aria-label="Close"
+                    style={{ color: "var(--ink)" }}
+                  >
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <line x1="5" y1="5" x2="19" y2="19" />
+                      <line x1="19" y1="5" x2="5" y2="19" />
+                    </svg>
+                  </button>
+                </div>
               </div>
               <div className="flex-1 overflow-y-auto">
                 {selectedRoomObj.image && (
