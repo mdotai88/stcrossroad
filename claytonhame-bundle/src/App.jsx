@@ -17,6 +17,7 @@ import {
   Mail,
   Phone,
   ArrowRight,
+  ArrowLeft,
   Check,
   Download,
   Zap,
@@ -77,7 +78,7 @@ const FLOORS = {
         name: "Garden",
         dim: "Two-zone landscaped garden",
         image: IMG.garden,
-        note: "A two-zone outdoor space — a sheltered lower patio off the kitchen for morning coffee, and a raised upper terrace beyond, framed by planting.",
+        note: "A two-zone outdoor space — a gently enclosed lower patio off the kitchen for morning coffee, and a raised upper terrace beyond, framed by planting.",
         poly: "641,1324 645,1033 1055,536 1292,280 1524,48 1452,399 1294,1150 1214,1546 1214,2579 1115,2577 1117,2348 1118,1902 1117,1326",
       },
       {
@@ -85,7 +86,7 @@ const FLOORS = {
         name: "Kitchen & Dining",
         dim: `8.00 × 4.22m  ·  26'3" × 13'10"`,
         image: IMG.kitchen,
-        note: "Rebuilt for modern living as one open-plan room. Bespoke shaker cabinetry, central island, chevron oak floor, and full-width glazed doors that fold back onto the patio.",
+        note: "Rebuilt for modern living as one open-plan room with tall ceilings. Beautiful shaker cabinetry, central peninsula and breakfast bar, chevron oak floor, and full-width glazed doors that fold back onto the patio.",
         poly: "666,2159 1083,2161 1081,1361 663,1360",
       },
       {
@@ -93,7 +94,7 @@ const FLOORS = {
         name: "Utility Room",
         dim: `3.27 × 1.86m  ·  10'9" × 6'1"`,
         image: IMG.utility,
-        note: "Fitted shaker cabinetry, deep sink, integrated washer and dryer — quietly tucked away from the main living spaces.",
+        note: "Fitted shaker cabinetry, deep sink, plenty of storage — quietly tucked away from the main living spaces.",
         poly: "537,2196 538,2286 574,2286 574,2376 893,2377 893,2197",
       },
       {
@@ -135,7 +136,7 @@ const FLOORS = {
         name: "Second Bedroom & Ensuite",
         dim: `3.10 × 4.13m  ·  13'7" × 10'2"`,
         image: IMG.bed2,
-        note: "A second principal suite — a generous double with its own ensuite. Light, calm and considered finishes throughout.",
+        note: "A second principal bedroom — a generous double with its own ensuite. Plenty of natural light making the room feel bright and calm.",
         poly: "1237,25 1002,25 1006,545 1238,549",
       },
       {
@@ -143,7 +144,7 @@ const FLOORS = {
         name: "Second Bedroom & Dressing Room",
         dim: `3.10 × 4.13m  ·  13'7" × 10'2"`,
         image: IMG.bed2b,
-        note: "Detail view of the second suite — bespoke cabinetry, soft wool carpet and curated art give the room its own character.",
+        note: "Detail view of the second suite — views over the rear garden, separately lit dressing area.",
         poly: "804,26 804,543 1004,543 998,25",
       },
       {
@@ -151,7 +152,7 @@ const FLOORS = {
         name: "Master Dressing & Ensuite",
         dim: "Walk-through joinery + fully tiled ensuite",
         image: IMG.masterEn,
-        note: "Walk-through dressing room with arched alcoves and built-in joinery, leading to a fully tiled ensuite — deep green metro tile, brass fittings, walk-in shower.",
+        note: "Walk-through dressing room with feature arch, alcoves and built-in joinery, leading to a beautiful large ensuite — deep green herringbone tiles, brass fittings, walk-in shower, anti-fog mirror with feature lighting.",
         poly: "681,948 676,867 703,866 705,671 677,672 677,570 932,570 934,949",
       },
       {
@@ -159,7 +160,7 @@ const FLOORS = {
         name: "Master Bedroom",
         dim: `5.17 × 3.91m  ·  17'0" × 12'10"`,
         image: IMG.master,
-        note: "Generous proportions, panelled walls, integrated arched joinery, and its own walk-through dressing room and ensuite.",
+        note: "A generous principal bedroom with impressive 3m tall ceilings framed by bespoke illuminated coving, panelled walls, and striking integrated arched joinery, complemented by a walk-through dressing room and luxurious private ensuite.",
         poly: "719,975 1236,976 1237,1370 719,1371",
       },
     ],
@@ -177,7 +178,7 @@ const FLOORS = {
         name: "Fourth Bedroom",
         dim: `3.79 × 3.59m  ·  12'5" × 11'9"`,
         image: IMG.bed4,
-        note: "Flexible as a guest room, child's room or home office, with original sash windows reinstated and panelled walls.",
+        note: "A versatile space ideal as a guest bedroom, child's room or home office, with new sash windows flooding the room with natural light, complemented by a feature panelled wall and soft ambient lighting that creates a warm, cosy atmosphere on winter evenings.",
         poly: "530,29 888,29 888,297 778,298 778,411 529,411 531,324 572,324 572,131 530,131",
       },
       {
@@ -185,7 +186,7 @@ const FLOORS = {
         name: "Third Bedroom",
         dim: `4.05 × 3.63m  ·  13'3" × 11'11"`,
         image: IMG.bed3,
-        note: "A generous double with sash windows looking out to the treetops, eaves character and panelled walls.",
+        note: "A generous double with tall ceilings, sash windows that look out to the treetops, and a feature panelled wall with soft ambient lighting that creates a warm, cosy atmosphere on winter evenings.",
         poly: "529,426 890,426 890,825 530,825 529,707 570,708 573,549 530,550",
       },
       {
@@ -193,7 +194,7 @@ const FLOORS = {
         name: "Family Bathroom",
         dim: `4.02 × 1.76m  ·  13'2" × 5'9"`,
         image: IMG.famBath,
-        note: "Full-length bath with shower over, double-basin vanity, deep green metro tile and brass fittings — coherent with the bathrooms below.",
+        note: "Full-length bath with shower over, extra wide vanity with an anti-fog mirror with feature lighting, deep green tiles complemented by brass fittings — coherent with the bathrooms below.",
         poly: "1087,426 1086,826 907,825 905,425",
       },
     ],
@@ -737,6 +738,10 @@ export default function Claytonhame() {
         .typing-dot:nth-child(2) { animation-delay: 0.2s; }
         .typing-dot:nth-child(3) { animation-delay: 0.4s; }
         @keyframes blink { 0%, 80%, 100% { opacity: 0.2 } 40% { opacity: 1 } }
+        @keyframes slideUp {
+          from { transform: translateY(100%); }
+          to { transform: translateY(0); }
+        }
         section[id] { scroll-margin-top: 90px; }
         .back-to-top {
           position: fixed;
@@ -908,17 +913,14 @@ export default function Claytonhame() {
           />
           <div className="absolute inset-0 grain opacity-30 pointer-events-none" />
           <div className="relative max-w-6xl mx-auto px-6 pt-32 pb-24" style={{ minHeight: "92vh" }}>
-            <a
-              href="https://ffour.co.uk"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] mb-8 hover:opacity-80 transition-opacity group"
-              style={{ color: "var(--gold-soft)" }}
+            <div
+              className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] mb-8"
+              style={{ visibility: "hidden" }}
+              aria-hidden="true"
             >
-              <span className="block w-8 h-px transition-all group-hover:w-12" style={{ background: "var(--gold-soft)" }} />
-              <span>ffour Estates · A new chapter</span>
-              <ArrowRight className="w-3 h-3 opacity-60" />
-            </a>
+              <span className="block w-8 h-px" />
+              <span>spacer</span>
+            </div>
             <h1
               className="display text-6xl md:text-8xl leading-[0.95] font-light mb-6"
               style={{ color: "#F5EFE6" }}
@@ -975,6 +977,17 @@ export default function Claytonhame() {
               <span className="mx-2">·</span>
               <span className="italic">Sole agent: Knight Frank</span>
             </div>
+
+            <a
+              href="https://ffour.co.uk"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 mt-10 text-xs uppercase tracking-[0.25em] hover:opacity-80 transition-opacity group"
+              style={{ color: "var(--gold-soft)" }}
+            >
+              <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1" />
+              <span>Back to ffour Estates</span>
+            </a>
           </div>
         </section>
 
@@ -1032,11 +1045,11 @@ export default function Claytonhame() {
         {/* AI CONCIERGE */}
         <section
           id="concierge"
-          className="py-16 md:py-24 border-t"
+          className="py-12 md:py-24 border-t"
           style={{ borderColor: "var(--line)", background: "var(--cream-deep)" }}
         >
           <div className="max-w-5xl mx-auto px-5 md:px-6">
-            <div className="flex items-end justify-between flex-wrap gap-4 mb-8 md:mb-12">
+            <div className="flex items-end justify-between flex-wrap gap-4 mb-6 md:mb-12">
               <div>
                 <div
                   className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] mb-4"
@@ -1061,7 +1074,7 @@ export default function Claytonhame() {
               <div
                 ref={chatEndRef}
                 className="chat-scroll p-4 md:p-8 space-y-4 md:space-y-5 overflow-y-auto"
-                style={{ height: "min(40dvh, 380px)" }}
+                style={{ height: "min(30dvh, 320px)" }}
               >
                 {messages.map((m, i) => (
                   <div
@@ -1115,9 +1128,17 @@ export default function Claytonhame() {
                   value={chatInput}
                   onChange={(e) => setChatInput(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+                  onFocus={(e) => {
+                    // On mobile, give iOS time to bring up keyboard, then scroll the chat into view
+                    setTimeout(() => {
+                      if (window.innerWidth < 768) {
+                        e.target.scrollIntoView({ block: "center", behavior: "smooth" });
+                      }
+                    }, 350);
+                  }}
                   placeholder="Ask about rooms, finishes, the area…"
-                  className="flex-1 px-6 py-5 bg-transparent outline-none text-[15px]"
-                  style={{ color: "var(--ink)" }}
+                  className="flex-1 px-5 md:px-6 py-4 md:py-5 bg-transparent outline-none"
+                  style={{ color: "var(--ink)", fontSize: 16 }}
                 />
                 <button
                   onClick={() => sendMessage()}
@@ -1350,68 +1371,90 @@ export default function Claytonhame() {
           </div>
         </section>
 
-        {/* MOBILE ROOM DETAIL OVERLAY */}
+        {/* MOBILE ROOM DETAIL — bottom-sheet drawer */}
         {mobileDetailOpen && selectedRoomObj && (
           <div
-            className="fixed inset-0 z-50 lg:hidden fade-in flex flex-col"
-            style={{ background: "var(--cream)" }}
+            className="fixed inset-0 z-50 lg:hidden fade-in flex items-end justify-center"
+            style={{ background: "rgba(31,31,31,0.55)", backdropFilter: "blur(2px)" }}
+            onClick={() => setMobileDetailOpen(false)}
           >
-            <div className="flex items-center justify-between p-4 border-b" style={{ borderColor: "var(--line)" }}>
-              <div>
-                <div className="text-[10px] uppercase tracking-[0.25em]" style={{ color: "var(--gold)" }}>
-                  {currentFloor.label}
-                </div>
-                <div className="display text-xl">{selectedRoomObj.name}</div>
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="w-full max-w-md flex flex-col overflow-hidden"
+              style={{
+                background: "var(--cream)",
+                maxHeight: "85dvh",
+                borderTopLeftRadius: 20,
+                borderTopRightRadius: 20,
+                boxShadow: "0 -8px 32px rgba(0,0,0,0.18)",
+                animation: "slideUp 0.3s cubic-bezier(0.25, 1, 0.5, 1)",
+              }}
+            >
+              {/* Drag handle visual */}
+              <div className="flex justify-center pt-3 pb-1">
+                <div
+                  className="w-10 h-1 rounded-full"
+                  style={{ background: "var(--line)" }}
+                />
               </div>
-              <button
-                onClick={() => setMobileDetailOpen(false)}
-                className="p-2 -mr-2"
-                aria-label="Close"
-                style={{ color: "var(--ink)" }}
-              >
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <line x1="5" y1="5" x2="19" y2="19" />
-                  <line x1="19" y1="5" x2="5" y2="19" />
-                </svg>
-              </button>
-            </div>
-            <div className="flex-1 overflow-y-auto">
-              {selectedRoomObj.image && (
-                <div className="aspect-[16/10] overflow-hidden">
-                  <img
-                    src={selectedRoomObj.image}
-                    alt={selectedRoomObj.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              )}
-              <div className="p-5">
-                <div className="text-sm mb-4" style={{ color: "var(--ink-soft)" }}>
-                  {selectedRoomObj.dim}
-                </div>
-                <p className="text-base leading-relaxed mb-6" style={{ color: "var(--ink-soft)" }}>
-                  {selectedRoomObj.note}
-                </p>
-                <p className="text-xs italic mb-6" style={{ color: "var(--ink-soft)" }}>
-                  Computer-generated image for illustrative purposes only
-                </p>
 
-                {/* Quick chip list for hopping between rooms */}
-                <div className="pt-5 border-t" style={{ borderColor: "var(--line)" }}>
-                  <div className="text-[10px] uppercase tracking-[0.25em] mb-3" style={{ color: "var(--ink-soft)" }}>
-                    Other rooms on this floor
+              <div className="flex items-center justify-between px-5 py-3 border-b" style={{ borderColor: "var(--line)" }}>
+                <div>
+                  <div className="text-[10px] uppercase tracking-[0.25em]" style={{ color: "var(--gold)" }}>
+                    {currentFloor.label}
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {currentFloor.rooms.filter((r) => r.id !== selectedRoomObj.id).map((room) => (
-                      <button
-                        key={room.id}
-                        onClick={() => setSelectedRoom(room.id)}
-                        className="text-xs px-3 py-1.5 rounded-full border"
-                        style={{ background: "transparent", color: "var(--ink-soft)", borderColor: "var(--line)" }}
-                      >
-                        {room.name}
-                      </button>
-                    ))}
+                  <div className="display text-lg">{selectedRoomObj.name}</div>
+                </div>
+                <button
+                  onClick={() => setMobileDetailOpen(false)}
+                  className="p-2 -mr-2"
+                  aria-label="Close"
+                  style={{ color: "var(--ink)" }}
+                >
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <line x1="5" y1="5" x2="19" y2="19" />
+                    <line x1="19" y1="5" x2="5" y2="19" />
+                  </svg>
+                </button>
+              </div>
+              <div className="flex-1 overflow-y-auto">
+                {selectedRoomObj.image && (
+                  <div className="aspect-[16/10] overflow-hidden">
+                    <img
+                      src={selectedRoomObj.image}
+                      alt={selectedRoomObj.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
+                <div className="p-5">
+                  <div className="text-sm mb-3" style={{ color: "var(--ink-soft)" }}>
+                    {selectedRoomObj.dim}
+                  </div>
+                  <p className="text-[15px] leading-relaxed mb-5" style={{ color: "var(--ink-soft)" }}>
+                    {selectedRoomObj.note}
+                  </p>
+                  <p className="text-[11px] italic mb-5" style={{ color: "var(--ink-soft)" }}>
+                    Computer-generated image for illustrative purposes only
+                  </p>
+
+                  {/* Quick chip list */}
+                  <div className="pt-4 border-t" style={{ borderColor: "var(--line)" }}>
+                    <div className="text-[10px] uppercase tracking-[0.25em] mb-3" style={{ color: "var(--ink-soft)" }}>
+                      Other rooms on this floor
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {currentFloor.rooms.filter((r) => r.id !== selectedRoomObj.id).map((room) => (
+                        <button
+                          key={room.id}
+                          onClick={() => setSelectedRoom(room.id)}
+                          className="text-xs px-3 py-1.5 rounded-full border"
+                          style={{ background: "transparent", color: "var(--ink-soft)", borderColor: "var(--line)" }}
+                        >
+                          {room.name}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
