@@ -27,11 +27,11 @@ const PROPERTY = {
   name: "Claytonhame",
   address: "76 St Cross Road, Winchester",
   postcode: "SO23",
-  available: "December 2025",
+  available: "Q2 2026",
   beds: 4,
   baths: "3.5",
-  sqft: 2200,
-  sqm: 204,
+  sqft: 1984,
+  sqm: 184,
   tenure: "Freehold",
   warranty: "10-year Build Zone warranty",
   guidePrice: 1450000,
@@ -44,6 +44,7 @@ const PROPERTY = {
 };
 
 const LOGO_URL = "https://ffour.co.uk/wp-content/uploads/2023/11/FFOUR-Estates-Logo-Label-Tag.png";
+const KF_LOGO_URL = "https://ffour.co.uk/wp-content/uploads/2026/05/Knight_Frank_Logo.svg.png";
 
 const IMG = {
   hallway: "https://ffour.co.uk/wp-content/uploads/2026/05/1-Hallway.png",
@@ -65,66 +66,58 @@ const FLOORS = {
   ground: {
     label: "Ground Floor",
     plan: {
-      url: "https://ffour.co.uk/wp-content/uploads/2026/05/Ground-Floor-scaled.png",
+      url: "https://ffour.co.uk/wp-content/uploads/2026/05/St-Cross-Ground-Floor-scaled.png",
       width: 1554,
       height: 3111,
     },
     rooms: [
       {
-        id: "upper-patio",
-        name: "Upper Patio",
-        dim: "Elevated terrace · mature planting",
+        id: "garden",
+        name: "Garden",
+        dim: "Two-zone landscaped garden",
         image: IMG.garden,
-        note: "A private raised garden room for long summer evenings, with mature planting along the walls and a clear view back across the lower patio.",
-        hotspot: { x: 36, y: 0, w: 64, h: 26 },
+        note: "A two-zone outdoor space — a sheltered lower patio off the kitchen for morning coffee, and a raised upper terrace beyond, framed by planting.",
+        poly: "641,1324 645,1033 1055,536 1292,280 1524,48 1452,399 1294,1150 1214,1546 1214,2579 1115,2577 1117,2348 1118,1902 1117,1326",
       },
       {
-        id: "lower-patio",
-        name: "Lower Patio",
-        dim: "Sheltered · directly off the kitchen",
-        image: IMG.garden,
-        note: "The morning-coffee, kicked-off-shoes spot — sheltered, with built-in seating and planting, just outside the bifold doors.",
-        hotspot: { x: 36, y: 26, w: 60, h: 11 },
-      },
-      {
-        id: "dining",
-        name: "Dining",
-        dim: "Part of an 8.00 × 4.22m open plan",
+        id: "kitchen-dining",
+        name: "Kitchen & Dining",
+        dim: `8.00 × 4.22m  ·  26'3" × 13'10"`,
         image: IMG.kitchen,
-        note: "The dining end of the open-plan rear extension, framed by full-width aluminium bifold doors that fold back onto the lower patio.",
-        hotspot: { x: 36, y: 37, w: 60, h: 13 },
-      },
-      {
-        id: "kitchen",
-        name: "Kitchen",
-        dim: "Part of an 8.00 × 4.22m open plan",
-        image: IMG.kitchen,
-        note: "Rebuilt for modern living. Bespoke shaker cabinetry in white with brass handles, central island, chevron oak floor.",
-        hotspot: { x: 36, y: 50, w: 60, h: 13 },
+        note: "Rebuilt for modern living as one open-plan room. Bespoke shaker cabinetry, central island, chevron oak floor, and full-width aluminium bifold doors that fold back onto the patio.",
+        poly: "666,2159 1083,2161 1081,1361 663,1360",
       },
       {
         id: "utility",
         name: "Utility Room",
-        dim: "3.27 × 1.86m  ·  10'9\" × 6'1\"",
+        dim: `3.27 × 1.86m  ·  10'9" × 6'1"`,
         image: IMG.utility,
         note: "Fitted shaker cabinetry, deep sink, integrated washer and dryer — quietly tucked away from the main living spaces.",
-        hotspot: { x: 36, y: 63, w: 32, h: 8 },
+        poly: "537,2196 538,2286 574,2286 574,2376 893,2377 893,2197",
       },
       {
-        id: "wc-boot",
-        name: "WC & Boot Room",
-        dim: "By the rear entry · practically placed",
+        id: "wc",
+        name: "WC",
+        dim: "Cloakroom · brass fittings",
         image: IMG.wcBoot,
-        note: "Deep green tiling, brass fittings, banquette seating for boots — exactly where you need it after walking dogs or coming back from the meadows.",
-        hotspot: { x: 36, y: 71, w: 32, h: 8 },
+        note: "Cloakroom with deep green tiling and brass fittings, just off the hallway.",
+        poly: "575,2392 725,2393 725,2558 574,2560",
+      },
+      {
+        id: "boot",
+        name: "Boot Room",
+        dim: "By the rear entry",
+        image: IMG.wcBoot,
+        note: "Banquette seating for boots and a coat hook run — exactly where you need it after walking dogs or coming back from the meadows.",
+        poly: "741,2393 893,2393 892,2557 740,2559",
       },
       {
         id: "living",
         name: "Living Room",
-        dim: "5.5 × 4.9m  ·  18'1\" × 16'1\"",
+        dim: `5.5 × 4.9m  ·  18'1" × 16'1"`,
         image: IMG.drawing,
         note: "South-facing with high ceilings, panelled walls and a bay window framing the light. Original architecture preserved, finishes thoroughly modernised.",
-        hotspot: { x: 36, y: 78, w: 60, h: 22 },
+        poly: "1084,2970 974,2970 897,3071 704,3074 620,2970 539,2968 537,2861 585,2860 585,2714 539,2713 537,2588 1081,2589",
       },
       {
         id: "hallway",
@@ -132,64 +125,55 @@ const FLOORS = {
         dim: "Original features · chevron oak",
         image: IMG.hallway,
         note: "Original cornicing, wainscoting and chevron oak underfoot. The staircase sweeps up to the right, with a clear sightline through to the kitchen and garden beyond.",
-        hotspot: null,
       },
     ],
   },
   first: {
     label: "First Floor",
     plan: {
-      url: "https://ffour.co.uk/wp-content/uploads/2026/05/First-Floor.png",
+      url: "https://ffour.co.uk/wp-content/uploads/2026/05/St-Cross-First-Floor.png",
       width: 1394,
       height: 1503,
     },
     rooms: [
       {
-        id: "bed2",
-        name: "Second Bedroom",
-        dim: "3.10 × 4.13m  ·  13'7\" × 10'2\"",
+        id: "bed2-ensuite",
+        name: "Second Bedroom & Ensuite",
+        dim: `3.10 × 4.13m  ·  13'7" × 10'2"`,
         image: IMG.bed2,
-        note: "A second principal suite — a generous double with its own dressing room and ensuite.",
-        hotspot: { x: 50, y: 1, w: 47, h: 27 },
+        note: "A second principal suite — a generous double with its own ensuite. Light, calm and considered finishes throughout.",
+        poly: "1237,25 1002,25 1006,545 1238,549",
       },
       {
         id: "bed2-dressing",
-        name: "Dressing Room & Ensuite",
-        dim: "Serving the second bedroom",
+        name: "Second Bedroom & Dressing Room",
+        dim: `3.10 × 4.13m  ·  13'7" × 10'2"`,
         image: IMG.bed2b,
-        note: "A walk-through dressing room leading to its own ensuite shower — effectively a smaller mirror of the master suite.",
-        hotspot: { x: 50, y: 28, w: 47, h: 14 },
+        note: "Detail view of the second suite — bespoke cabinetry, soft wool carpet and curated art give the room its own character.",
+        poly: "804,26 804,543 1004,543 998,25",
       },
       {
-        id: "master-en",
-        name: "Master Ensuite",
-        dim: "2.28 × 2.31m  ·  7'7\" × 7'6\"",
+        id: "master-dress-en",
+        name: "Master Dressing & Ensuite",
+        dim: "Walk-through joinery + fully tiled ensuite",
         image: IMG.masterEn,
-        note: "Deep-green ceramic tile, brass fittings, walk-in shower.",
-        hotspot: { x: 50, y: 42, w: 27, h: 13 },
-      },
-      {
-        id: "master-dress",
-        name: "Master Dressing Room",
-        dim: "Walk-through joinery",
-        image: IMG.masterEn,
-        note: "Walk-through dressing with arched alcoves and built-in joinery, linking the master bedroom to the ensuite.",
-        hotspot: { x: 50, y: 55, w: 27, h: 11 },
+        note: "Walk-through dressing room with arched alcoves and built-in joinery, leading to a fully tiled ensuite — deep green metro tile, brass fittings, walk-in shower.",
+        poly: "681,948 676,867 703,866 705,671 677,672 677,570 932,570 934,949",
       },
       {
         id: "master",
         name: "Master Bedroom",
-        dim: "5.17 × 3.91m  ·  17'0\" × 12'10\"",
+        dim: `5.17 × 3.91m  ·  17'0" × 12'10"`,
         image: IMG.master,
         note: "Generous proportions, panelled walls, integrated arched joinery, and its own walk-through dressing room and ensuite.",
-        hotspot: { x: 36, y: 66, w: 60, h: 33 },
+        poly: "719,975 1236,976 1237,1370 719,1371",
       },
     ],
   },
   second: {
     label: "Second Floor",
     plan: {
-      url: "https://ffour.co.uk/wp-content/uploads/2026/05/Second-Floor.png",
+      url: "https://ffour.co.uk/wp-content/uploads/2026/05/St-Cross-Second-Floor.png",
       width: 1471,
       height: 858,
     },
@@ -197,30 +181,31 @@ const FLOORS = {
       {
         id: "bed4",
         name: "Fourth Bedroom",
-        dim: "3.79 × 3.59m  ·  12'5\" × 11'9\"",
+        dim: `3.79 × 3.59m  ·  12'5" × 11'9"`,
         image: IMG.bed4,
         note: "Flexible as a guest room, child's room or home office, with original sash windows reinstated and panelled walls.",
-        hotspot: { x: 14, y: 0, w: 47, h: 50 },
+        poly: "530,29 888,29 888,297 778,298 778,411 529,411 531,324 572,324 572,131 530,131",
       },
       {
         id: "bed3",
         name: "Third Bedroom",
-        dim: "4.05 × 3.63m  ·  13'3\" × 11'11\"",
+        dim: `4.05 × 3.63m  ·  13'3" × 11'11"`,
         image: IMG.bed3,
         note: "A generous double with sash windows looking out to the treetops, eaves character and panelled walls.",
-        hotspot: { x: 14, y: 50, w: 47, h: 50 },
+        poly: "529,426 890,426 890,825 530,825 529,707 570,708 573,549 530,550",
       },
       {
         id: "fam-bath",
         name: "Family Bathroom",
-        dim: "4.02 × 1.76m  ·  13'2\" × 5'9\"",
+        dim: `4.02 × 1.76m  ·  13'2" × 5'9"`,
         image: IMG.famBath,
         note: "Full-length bath with shower over, double-basin vanity, deep green metro tile and brass fittings — coherent with the bathrooms below.",
-        hotspot: { x: 61, y: 0, w: 25, h: 100 },
+        poly: "1087,426 1086,826 907,825 905,425",
       },
     ],
   },
 };
+
 
 const LOCAL = {
   schools: [
@@ -241,10 +226,13 @@ const LOCAL = {
     { name: "South Downs National Park", note: "Walking & cycling on the doorstep", dist: "2 mi" },
   ],
   food: [
+    { name: "The Ivy", note: "Brasserie classics in the cathedral close", dist: "0.6 mi" },
+    { name: "The Chesil Rectory", note: "1450s timber-frame · refined British", dist: "0.7 mi" },
+    { name: "Rick Stein", note: "The seafood institution, Winchester branch", dist: "0.7 mi" },
+    { name: "Bistro du Vin", note: "Hotel du Vin's Winchester restaurant", dist: "0.7 mi" },
     { name: "Yiayias Kitchen", note: "Greek — local favourite, 4.6★", dist: "0.9 mi" },
     { name: "Royal Gurkha", note: "Nepalese, 5.0★", dist: "0.9 mi" },
     { name: "Lebanese House", note: "Levantine, 4.8★", dist: "1.1 mi" },
-    { name: "Bistro du Vin", note: "Winchester institution", dist: "0.7 mi" },
   ],
 };
 
@@ -274,7 +262,7 @@ const AGENTS = [
   },
   {
     name: "Lottie Lambert",
-    role: "Winchester Office",
+    role: "Associate",
     email: "Lottie.Lambert@knightfrank.com",
     phone1: "01962 677 246",
     phone2: "07977 759 140",
@@ -327,7 +315,7 @@ const KB = [
     id: "garden",
     primary: ["garden", "outside", "outdoor", "patio", "terrace", "rear"],
     secondary: ["upper", "lower", "size", "south", "facing"],
-    answer: "The rear garden is in two distinct zones. A lower patio sits straight off the kitchen — the morning-coffee, kicked-off-shoes spot. A few steps up you reach the elevated upper terrace, a private raised garden room ideal for evenings, with mature planting along the walls.",
+    answer: "The rear garden is a thoughtfully designed two-zone outdoor space. A sheltered lower patio sits directly off the kitchen — the morning-coffee, kicked-off-shoes spot. A few steps up, a raised upper terrace gives a second outdoor room, framed by planting along the walls.",
   },
   {
     id: "utility",
@@ -365,7 +353,7 @@ const KB = [
     id: "total-size",
     primary: ["square feet", "sqft", "sq ft", "square metre", "square meter", "total size", "size of the house", "how big is the house", "gross area", "how big is the property"],
     secondary: ["total", "overall", "gross"],
-    answer: "Claytonhame is 2,200 sq ft / 204 sq m across three floors. Generous for the street.",
+    answer: "Claytonhame is 1,984 sq ft / 184.3 sq m across three floors. Generous for the street.",
   },
   {
     id: "beds-count",
@@ -442,8 +430,8 @@ const KB = [
   {
     id: "completion",
     primary: ["completion", "available", "ready", "move in", "when can", "finished", "completion date"],
-    secondary: ["december", "2025"],
-    answer: "Claytonhame is scheduled to be available from December 2025.",
+    secondary: ["q2", "2026"],
+    answer: "Claytonhame is scheduled to be available from Q2 2026.",
   },
   {
     id: "period",
@@ -495,7 +483,7 @@ const KB = [
     id: "restaurants",
     primary: ["restaurant", "restaurants", "eat", "eating", "dinner", "pub", "bar", "cafe"],
     secondary: ["winchester", "good", "best"],
-    answer: "Winchester has a strong food scene. Local favourites: Yiayias Kitchen (Greek, 4.6★), Royal Gurkha (Nepalese, 5★), Lebanese House (4.8★), Bistro du Vin, and a clutch of riverside pubs. All within a mile.",
+    answer: "Winchester has a strong food scene. The Ivy, Rick Stein and The Chesil Rectory all sit within the cathedral close, plus Bistro du Vin at the Hotel du Vin. Local favourites a little further out include Yiayias Kitchen (Greek, 4.6★), Royal Gurkha (Nepalese, 5★) and Lebanese House (4.8★).",
   },
   {
     id: "walks",
@@ -572,10 +560,39 @@ function findAnswer(query) {
   }
 
   if (!best || bestScore < 3) {
-    return "That's a question I don't have a direct answer for. The best people for specifics like that are at Knight Frank — Jonathan Lacey on 01962 677 242 or Lottie Lambert on 01962 677 246. Or scroll down and register your interest and they'll come back to you.";
+    return {
+      matched: false,
+      answer: "That's a question I don't have a direct answer for. The best people for specifics like that are at Knight Frank — Jonathan Lacey on 01962 677 242 or Lottie Lambert on 01962 677 246. Or scroll down and register your interest and they'll come back to you.",
+    };
   }
 
-  return best.answer;
+  return { matched: true, id: best.id, answer: best.answer };
+}
+
+// ---------- Log unanswered questions ----------
+// Once a Formspree (or similar) endpoint is configured, this POSTs the
+// unanswered question so the developer can see what buyers are asking and
+// improve the knowledge base.
+const UNANSWERED_ENDPOINT = ""; // <-- paste Formspree URL here, e.g. "https://formspree.io/f/xyzabc"
+async function logUnanswered(question) {
+  if (!UNANSWERED_ENDPOINT) {
+    console.log("[Unanswered question]", question);
+    return;
+  }
+  try {
+    await fetch(UNANSWERED_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        type: "unanswered_question",
+        question,
+        timestamp: new Date().toISOString(),
+        url: typeof window !== "undefined" ? window.location.href : "",
+      }),
+    });
+  } catch (e) {
+    console.error("Failed to log unanswered question", e);
+  }
 }
 
 // ---------- Main component ----------
@@ -583,6 +600,10 @@ export default function Claytonhame() {
   const [activeFloor, setActiveFloor] = useState("ground");
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [hoveredRoom, setHoveredRoom] = useState(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const roomDetailRef = useRef(null);
   const [messages, setMessages] = useState([
     {
       role: "assistant",
@@ -599,19 +620,35 @@ export default function Claytonhame() {
   const [rate, setRate] = useState(4.5);
   const [term, setTerm] = useState(30);
 
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "", note: "" });
-
   useEffect(() => {
     if (chatEndRef.current) {
       chatEndRef.current.scrollTop = chatEndRef.current.scrollHeight;
     }
   }, [messages, chatLoading]);
 
+  useEffect(() => {
+    const onScroll = () => {
+      setIsScrolled(window.scrollY > 80);
+      setShowBackToTop(window.scrollY > 600);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const currentFloor = FLOORS[activeFloor];
   const selectedRoomObj = selectedRoom
     ? currentFloor.rooms.find((r) => r.id === selectedRoom)
     : currentFloor.rooms[0];
+
+  const handleRoomSelect = (roomId) => {
+    setSelectedRoom(roomId);
+    // On mobile, scroll the room detail card into view so the image change is visible
+    if (window.innerWidth < 1024 && roomDetailRef.current) {
+      setTimeout(() => {
+        roomDetailRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 50);
+    }
+  };
 
   const sendMessage = async (text) => {
     const content = (text ?? chatInput).trim();
@@ -620,11 +657,13 @@ export default function Claytonhame() {
     setMessages((prev) => [...prev, userMsg]);
     setChatInput("");
     setChatLoading(true);
-    // Simulate a brief "thinking" delay so it feels considered, not instant.
     const delay = 600 + Math.random() * 700;
     setTimeout(() => {
-      const reply = findAnswer(content);
-      setMessages((prev) => [...prev, { role: "assistant", content: reply }]);
+      const result = findAnswer(content);
+      if (!result.matched) {
+        logUnanswered(content);
+      }
+      setMessages((prev) => [...prev, { role: "assistant", content: result.answer }]);
       setChatLoading(false);
     }, delay);
   };
@@ -667,11 +706,6 @@ export default function Claytonhame() {
     "How do I book a viewing?",
   ];
 
-  const handleFormSubmit = () => {
-    if (!formData.name || !formData.email) return;
-    setFormSubmitted(true);
-  };
-
   return (
     <div className="min-h-screen" style={{ background: "#F5EFE6", color: "#1C1A17" }}>
       <style>{`
@@ -711,45 +745,136 @@ export default function Claytonhame() {
         .typing-dot:nth-child(2) { animation-delay: 0.2s; }
         .typing-dot:nth-child(3) { animation-delay: 0.4s; }
         @keyframes blink { 0%, 80%, 100% { opacity: 0.2 } 40% { opacity: 1 } }
+        section[id] { scroll-margin-top: 90px; }
+        .back-to-top {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          z-index: 30;
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          background: var(--ink);
+          color: var(--cream);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+          transition: opacity 0.3s, transform 0.3s;
+          cursor: pointer;
+          border: none;
+        }
+        .back-to-top:hover { transform: translateY(-2px); }
       `}</style>
 
       <div style={{ fontFamily: "Manrope, sans-serif" }}>
         {/* NAV */}
         <nav
-          className="sticky top-0 z-40 backdrop-blur-md"
-          style={{ background: "rgba(245, 239, 230, 0.92)", borderBottom: "1px solid var(--line)" }}
+          className="fixed top-0 left-0 right-0 z-40 transition-all duration-300"
+          style={{
+            background: isScrolled ? "rgba(245, 239, 230, 0.92)" : "transparent",
+            backdropFilter: isScrolled ? "blur(10px)" : "none",
+            borderBottom: isScrolled ? "1px solid var(--line)" : "1px solid transparent",
+          }}
         >
-          <div className="max-w-6xl mx-auto px-6 flex items-start justify-between" style={{ minHeight: 86 }}>
+          <div className="max-w-6xl mx-auto px-5 md:px-6 flex items-start justify-between" style={{ minHeight: 86 }}>
             {/* Logo — flush top, hanging tag style */}
             <a href="#top" className="block flex-shrink-0" style={{ marginTop: 0 }}>
               <img
                 src={LOGO_URL}
                 alt="ffour Estates"
                 className="block"
-                style={{ height: 110, width: "auto", marginTop: 0, display: "block" }}
+                style={{ height: 96, width: "auto", marginTop: 0, display: "block" }}
               />
             </a>
 
-            {/* Right side — links + CTA, vertically centered */}
-            <div className="flex items-center gap-8 self-center pb-1">
-              <div className="hidden md:flex gap-7 text-sm" style={{ color: "var(--ink-soft)" }}>
-                <a href="#story" className="hover:text-black">The House</a>
-                <a href="#concierge" className="hover:text-black">Ask</a>
-                <a href="#floorplan" className="hover:text-black">Floorplan</a>
-                <a href="#area" className="hover:text-black">Area</a>
-                <a href="#cost" className="hover:text-black">Cost</a>
-                <a href="#contact" className="hover:text-black">Contact</a>
+            {/* Right side */}
+            <div className="flex items-center gap-6 self-center pb-1">
+              {/* Desktop nav */}
+              <div
+                className="hidden md:flex gap-6 text-sm transition-colors"
+                style={{ color: isScrolled ? "var(--ink-soft)" : "rgba(245, 239, 230, 0.9)" }}
+              >
+                <a href="#story" className="hover:opacity-70 transition-opacity">The House</a>
+                <a href="#floorplan" className="hover:opacity-70 transition-opacity">Floorplan</a>
+                <a href="#concierge" className="hover:opacity-70 transition-opacity">Ask</a>
+                <a href="#area" className="hover:opacity-70 transition-opacity">Area</a>
+                <a href="#cost" className="hover:opacity-70 transition-opacity">Cost</a>
               </div>
               <a
                 href="#contact"
-                className="hidden md:inline-block px-5 py-2.5 text-sm tracking-wide rounded-full text-white transition-opacity hover:opacity-90"
-                style={{ background: "var(--ink)" }}
+                className="hidden md:inline-block px-5 py-2.5 text-sm tracking-wide rounded-full transition-all"
+                style={{
+                  background: isScrolled ? "var(--ink)" : "rgba(245, 239, 230, 0.95)",
+                  color: isScrolled ? "white" : "var(--ink)",
+                }}
               >
                 Book a viewing
               </a>
+
+              {/* Mobile hamburger */}
+              <button
+                onClick={() => setMobileMenuOpen(true)}
+                className="md:hidden p-2 -mr-2"
+                aria-label="Open menu"
+                style={{ color: isScrolled ? "var(--ink)" : "var(--cream)" }}
+              >
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <line x1="3" y1="8" x2="21" y2="8" />
+                  <line x1="3" y1="16" x2="21" y2="16" />
+                </svg>
+              </button>
             </div>
           </div>
         </nav>
+
+        {/* MOBILE MENU OVERLAY */}
+        {mobileMenuOpen && (
+          <div
+            className="fixed inset-0 z-50 md:hidden fade-in"
+            style={{ background: "var(--ink)" }}
+          >
+            <div className="flex justify-between items-start px-5 pt-0" style={{ minHeight: 86 }}>
+              <img src={LOGO_URL} alt="ffour Estates" style={{ height: 96, display: "block" }} />
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="self-center p-2 -mr-2"
+                aria-label="Close menu"
+                style={{ color: "var(--cream)" }}
+              >
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <line x1="5" y1="5" x2="19" y2="19" />
+                  <line x1="19" y1="5" x2="5" y2="19" />
+                </svg>
+              </button>
+            </div>
+            <div className="px-8 pt-8 pb-12 flex flex-col gap-6 display text-3xl" style={{ color: "var(--cream)" }}>
+              {[
+                { href: "#story", label: "The House" },
+                { href: "#floorplan", label: "Floorplan" },
+                { href: "#concierge", label: "Ask the House" },
+                { href: "#area", label: "The Area" },
+                { href: "#cost", label: "Cost" },
+                { href: "#contact", label: "Book a Viewing" },
+              ].map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="font-light border-b pb-3"
+                  style={{ borderColor: "rgba(245,239,230,0.15)" }}
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
+            <div className="px-8 mt-8 text-xs uppercase tracking-[0.25em]" style={{ color: "rgba(245,239,230,0.5)" }}>
+              <a href="https://ffour.co.uk" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2">
+                ffour.co.uk <ArrowRight className="w-3 h-3" />
+              </a>
+            </div>
+          </div>
+        )}
 
         {/* HERO */}
         <section className="relative overflow-hidden" style={{ minHeight: "92vh" }}>
@@ -889,11 +1014,11 @@ export default function Claytonhame() {
         {/* AI CONCIERGE */}
         <section
           id="concierge"
-          className="py-24 border-t"
+          className="py-16 md:py-24 border-t"
           style={{ borderColor: "var(--line)", background: "var(--cream-deep)" }}
         >
-          <div className="max-w-5xl mx-auto px-6">
-            <div className="flex items-end justify-between flex-wrap gap-4 mb-12">
+          <div className="max-w-5xl mx-auto px-5 md:px-6">
+            <div className="flex items-end justify-between flex-wrap gap-4 mb-8 md:mb-12">
               <div>
                 <div
                   className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] mb-4"
@@ -902,7 +1027,7 @@ export default function Claytonhame() {
                   <Sparkles className="w-3.5 h-3.5" />
                   <span>The Concierge</span>
                 </div>
-                <h2 className="display text-4xl md:text-5xl font-light leading-tight max-w-2xl">
+                <h2 className="display text-3xl md:text-5xl font-light leading-tight max-w-2xl">
                   Ask the house anything.
                 </h2>
               </div>
@@ -917,8 +1042,8 @@ export default function Claytonhame() {
             >
               <div
                 ref={chatEndRef}
-                className="chat-scroll p-6 md:p-8 space-y-5 overflow-y-auto"
-                style={{ height: 420 }}
+                className="chat-scroll p-4 md:p-8 space-y-4 md:space-y-5 overflow-y-auto"
+                style={{ height: "min(60vh, 420px)" }}
               >
                 {messages.map((m, i) => (
                   <div
@@ -926,7 +1051,7 @@ export default function Claytonhame() {
                     className={`flex ${m.role === "user" ? "justify-end" : "justify-start"} fade-in`}
                   >
                     <div
-                      className="max-w-[85%] px-5 py-3.5 rounded-2xl text-[15px] leading-relaxed whitespace-pre-wrap"
+                      className="max-w-[85%] px-4 md:px-5 py-3 md:py-3.5 rounded-2xl text-sm md:text-[15px] leading-relaxed whitespace-pre-wrap"
                       style={
                         m.role === "user"
                           ? { background: "var(--accent)", color: "white", borderBottomRightRadius: 4 }
@@ -952,12 +1077,12 @@ export default function Claytonhame() {
               </div>
 
               {messages.length <= 1 && (
-                <div className="px-6 md:px-8 pb-4 flex flex-wrap gap-2">
+                <div className="px-4 md:px-8 pb-3 md:pb-4 flex flex-wrap gap-2">
                   {samplePrompts.map((p) => (
                     <button
                       key={p}
                       onClick={() => sendMessage(p)}
-                      className="text-xs px-3.5 py-2 rounded-full border transition-colors hover:bg-white"
+                      className="text-xs px-3 md:px-3.5 py-1.5 md:py-2 rounded-full border transition-colors hover:bg-white"
                       style={{ borderColor: "var(--line)", color: "var(--ink-soft)" }}
                     >
                       {p}
@@ -1047,38 +1172,44 @@ export default function Claytonhame() {
                     style={{ width: "100%", height: "100%", display: "block" }}
                     draggable={false}
                   />
-                  {currentFloor.rooms.filter((r) => r.hotspot).map((room) => {
-                    const isSelected = selectedRoomObj?.id === room.id;
-                    const isHovered = hoveredRoom === room.id;
-                    return (
-                      <button
-                        key={room.id}
-                        title={room.name}
-                        onClick={() => setSelectedRoom(room.id)}
-                        onMouseEnter={() => setHoveredRoom(room.id)}
-                        onMouseLeave={() => setHoveredRoom(null)}
-                        aria-label={`View ${room.name}`}
-                        style={{
-                          position: "absolute",
-                          left: `${room.hotspot.x}%`,
-                          top: `${room.hotspot.y}%`,
-                          width: `${room.hotspot.w}%`,
-                          height: `${room.hotspot.h}%`,
-                          background: isSelected
-                            ? "rgba(181, 168, 124, 0.32)"
-                            : isHovered
-                            ? "rgba(181, 168, 124, 0.18)"
-                            : "transparent",
-                          border: isSelected
-                            ? "1.5px solid var(--gold)"
-                            : "1.5px solid transparent",
-                          cursor: "pointer",
-                          transition: "all 0.25s ease",
-                          padding: 0,
-                        }}
-                      />
-                    );
-                  })}
+                  <svg
+                    viewBox={`0 0 ${currentFloor.plan.width} ${currentFloor.plan.height}`}
+                    preserveAspectRatio="none"
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      width: "100%",
+                      height: "100%",
+                      pointerEvents: "none",
+                    }}
+                  >
+                    {currentFloor.rooms.filter((r) => r.poly).map((room) => {
+                      const isSelected = selectedRoomObj?.id === room.id;
+                      const isHovered = hoveredRoom === room.id;
+                      const fillOpacity = isSelected ? 0.32 : isHovered ? 0.18 : 0;
+                      return (
+                        <polygon
+                          key={room.id}
+                          points={room.poly}
+                          fill="#B5A87C"
+                          fillOpacity={fillOpacity}
+                          stroke={isSelected ? "#B5A87C" : "transparent"}
+                          strokeWidth="3"
+                          vectorEffect="non-scaling-stroke"
+                          style={{
+                            cursor: "pointer",
+                            transition: "fill-opacity 0.25s ease, stroke 0.25s ease",
+                            pointerEvents: "auto",
+                          }}
+                          onClick={() => handleRoomSelect(room.id)}
+                          onMouseEnter={() => setHoveredRoom(room.id)}
+                          onMouseLeave={() => setHoveredRoom(null)}
+                        >
+                          <title>{room.name}</title>
+                        </polygon>
+                      );
+                    })}
+                  </svg>
                 </div>
                 <p className="text-xs mt-5 text-center" style={{ color: "var(--ink-soft)" }}>
                   Tap any room on the plan to explore
@@ -1086,7 +1217,7 @@ export default function Claytonhame() {
               </div>
 
               {/* RIGHT: Room detail panel */}
-              <div className="lg:sticky lg:top-28">
+              <div ref={roomDetailRef} className="lg:sticky lg:top-28 scroll-mt-24">
                 <div
                   key={selectedRoomObj?.id}
                   className="rounded-2xl overflow-hidden fade-in"
@@ -1130,7 +1261,7 @@ export default function Claytonhame() {
                       return (
                         <button
                           key={room.id}
-                          onClick={() => setSelectedRoom(room.id)}
+                          onClick={() => handleRoomSelect(room.id)}
                           className="text-xs px-3 py-1.5 rounded-full border transition-all"
                           style={{
                             background: isActive ? "var(--ink)" : "transparent",
@@ -1210,13 +1341,13 @@ export default function Claytonhame() {
                   Outside
                 </div>
                 <h2 className="display text-4xl md:text-5xl font-light leading-tight mb-6">
-                  Two gardens, <span style={{ fontStyle: "italic", color: "var(--accent)" }}>one address.</span>
+                  Considered <span style={{ fontStyle: "italic", color: "var(--gold)" }}>down to the planting.</span>
                 </h2>
                 <p className="text-lg leading-relaxed mb-4" style={{ color: "var(--ink-soft)" }}>
-                  The rear garden has been re-landscaped into two distinct zones. A lower patio runs straight off the kitchen — the morning-coffee, kicked-off-shoes spot.
+                  The rear garden has been re-landscaped into two thoughtful zones. A sheltered lower patio off the kitchen, with built-in seating and brickwork that picks up the warmth of the house.
                 </p>
                 <p className="text-lg leading-relaxed" style={{ color: "var(--ink-soft)" }}>
-                  Climb a few steps and you're on the upper terrace: a private, raised garden room for long summer evenings, with mature planting along the walls.
+                  A few steps up sits a private raised terrace — a second outdoor room, framed by mature planting along the walls. Enough for a table of six, supper outside, the rest of an evening still to enjoy.
                 </p>
               </div>
             </div>
@@ -1288,7 +1419,7 @@ export default function Claytonhame() {
             </div>
 
             <div
-              className="grid md:grid-cols-2 gap-8 rounded-2xl p-8 md:p-10"
+              className="grid md:grid-cols-2 gap-6 md:gap-8 rounded-2xl p-5 md:p-10"
               style={{ background: "var(--cream-deep)" }}
             >
               <div className="space-y-6">
@@ -1331,11 +1462,11 @@ export default function Claytonhame() {
               </div>
 
               <div className="flex flex-col justify-between gap-6">
-                <div className="rounded-xl p-8" style={{ background: "var(--accent)", color: "white" }}>
+                <div className="rounded-xl p-6 md:p-8" style={{ background: "var(--accent)", color: "white" }}>
                   <div className="text-xs uppercase tracking-[0.25em] opacity-70 mb-2">
                     Estimated monthly payment
                   </div>
-                  <div className="display text-5xl font-light">{fmt(monthly)}</div>
+                  <div className="display text-4xl md:text-5xl font-light">{fmt(monthly)}</div>
                   <div className="text-xs mt-3 opacity-70">
                     Capital & interest on {fmt(loan)} over {term} years at {rate.toFixed(1)}%
                   </div>
@@ -1353,7 +1484,7 @@ export default function Claytonhame() {
           </div>
         </section>
 
-        {/* CONTACT — Knight Frank agents + Register interest */}
+        {/* CONTACT — Knight Frank agents */}
         <section
           id="contact"
           className="py-24 border-t"
@@ -1361,95 +1492,62 @@ export default function Claytonhame() {
         >
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-16">
+              <img
+                src={KF_LOGO_URL}
+                alt="Knight Frank"
+                className="mx-auto mb-6"
+                style={{ height: 32, width: "auto" }}
+              />
               <div className="text-xs uppercase tracking-[0.25em] mb-4" style={{ color: "var(--gold)" }}>
-                Speak to the Agents
+                Sole Agent · Winchester
               </div>
               <h2 className="display text-4xl md:text-5xl font-light leading-tight mb-4">
-                Sole agents. <span style={{ fontStyle: "italic", color: "var(--accent)" }}>Knight Frank Winchester.</span>
+                Book a viewing <span style={{ fontStyle: "italic", color: "var(--gold)" }}>directly.</span>
               </h2>
               <p className="text-sm max-w-md mx-auto" style={{ color: "var(--ink-soft)" }}>
-                Viewings by appointment. Get in touch with Jon or Lottie directly, or register below and we'll be in touch.
+                Viewings by appointment. Reach Jon or Lottie at Knight Frank Winchester.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6 mb-16">
+            <div className="grid md:grid-cols-2 gap-6">
               {AGENTS.map((a) => (
                 <AgentCard key={a.email} agent={a} />
               ))}
             </div>
 
-            <div className="max-w-2xl mx-auto pt-12 border-t" style={{ borderColor: "var(--line)" }}>
-              <h3 className="display text-2xl text-center mb-2">Or register your interest</h3>
-              <p className="text-center text-sm mb-10" style={{ color: "var(--ink-soft)" }}>
-                We'll add you to the early-viewings list and send updates as completion approaches.
-              </p>
-
-              {!formSubmitted ? (
-                <div className="space-y-4">
-                  <Field
-                    label="Name"
-                    value={formData.name}
-                    onChange={(v) => setFormData({ ...formData, name: v })}
-                  />
-                  <Field
-                    label="Email"
-                    type="email"
-                    value={formData.email}
-                    onChange={(v) => setFormData({ ...formData, email: v })}
-                  />
-                  <Field
-                    label="Phone (optional)"
-                    value={formData.phone}
-                    onChange={(v) => setFormData({ ...formData, phone: v })}
-                  />
-                  <Field
-                    label="Anything we should know? (optional)"
-                    value={formData.note}
-                    onChange={(v) => setFormData({ ...formData, note: v })}
-                    textarea
-                  />
-                  <button
-                    onClick={handleFormSubmit}
-                    disabled={!formData.name || !formData.email}
-                    className="w-full px-6 py-4 text-sm tracking-wide rounded-full text-white transition-opacity hover:opacity-90 disabled:opacity-40 flex items-center justify-center gap-2 mt-4"
-                    style={{ background: "var(--accent)" }}
-                  >
-                    Submit
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
-              ) : (
-                <div className="text-center py-12 fade-in">
-                  <div
-                    className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-6"
-                    style={{ background: "var(--accent)" }}
-                  >
-                    <Check className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="display text-2xl mb-2">Thank you, {formData.name.split(" ")[0]}.</h3>
-                  <p className="text-sm" style={{ color: "var(--ink-soft)" }}>
-                    We've got your details. Knight Frank will be in touch shortly with viewing dates.
-                  </p>
-                </div>
-              )}
+            <div className="text-center mt-10 text-xs" style={{ color: "var(--ink-soft)" }}>
+              Knight Frank Winchester · 14 Jewry Street, Winchester SO23 8RZ
             </div>
           </div>
         </section>
 
         {/* FOOTER */}
         <footer
-          className="border-t py-12"
+          className="border-t py-14"
           style={{ borderColor: "var(--line)", background: "var(--ink)", color: "var(--cream-deep)" }}
         >
-          <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-8 text-sm">
+          <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-10 text-sm">
             <div>
               <div className="display text-xl mb-2">Claytonhame</div>
-              <div className="opacity-60">76 St Cross Road, Winchester</div>
-              <div className="opacity-60 mt-1">A development by ffour Estates</div>
-              <div className="opacity-60 italic mt-3 text-xs">{PROPERTY.tagline}</div>
+              <div className="opacity-60">76 St Cross Road, Winchester SO23</div>
+              <div className="opacity-50 italic mt-3 text-xs">{PROPERTY.tagline}</div>
+              <a
+                href="https://ffour.co.uk"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 mt-5 text-xs uppercase tracking-[0.2em] opacity-70 hover:opacity-100 transition-opacity"
+              >
+                Visit ffour.co.uk <ArrowRight className="w-3 h-3" />
+              </a>
             </div>
             <div>
-              <div className="text-xs uppercase tracking-widest mb-3 opacity-50">Knight Frank Winchester</div>
+              <img
+                src={KF_LOGO_URL}
+                alt="Knight Frank"
+                className="mb-3"
+                style={{ height: 24, width: "auto", filter: "brightness(0) invert(1)", opacity: 0.85 }}
+              />
+              <div className="text-xs uppercase tracking-widest mb-2 opacity-50">Sole Agent</div>
               <div className="opacity-80 mb-1">14 Jewry Street</div>
               <div className="opacity-80 mb-1">Winchester SO23 8RZ</div>
               <a
@@ -1473,13 +1571,26 @@ export default function Claytonhame() {
               >
                 View EPC certificate
               </a>
-              <div className="opacity-50 mt-4 text-xs">
+              <div className="opacity-50 mt-4 text-xs leading-relaxed">
                 Particulars are illustrative. All measurements approximate. Images are computer generated.
               </div>
             </div>
           </div>
         </footer>
       </div>
+
+      {/* BACK TO TOP */}
+      {showBackToTop && (
+        <button
+          className="back-to-top fade-in"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          aria-label="Back to top"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <polyline points="18 15 12 9 6 15" />
+          </svg>
+        </button>
+      )}
     </div>
   );
 }
@@ -1551,36 +1662,6 @@ function Row({ label, value, bold }) {
   );
 }
 
-function Field({ label, value, onChange, type = "text", textarea }) {
-  return (
-    <div>
-      <label
-        className="block text-xs uppercase tracking-widest mb-2"
-        style={{ color: "var(--ink-soft)" }}
-      >
-        {label}
-      </label>
-      {textarea ? (
-        <textarea
-          rows={3}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          className="w-full px-4 py-3 rounded-lg border bg-transparent text-sm outline-none focus:border-black"
-          style={{ borderColor: "var(--line)", color: "var(--ink)" }}
-        />
-      ) : (
-        <input
-          type={type}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          className="w-full px-4 py-3 rounded-lg border bg-transparent text-sm outline-none focus:border-black"
-          style={{ borderColor: "var(--line)", color: "var(--ink)" }}
-        />
-      )}
-    </div>
-  );
-}
-
 function AgentCard({ agent }) {
   return (
     <div
@@ -1643,8 +1724,8 @@ function EPCWidget() {
   const potential = PROPERTY.epc.potential;
 
   return (
-    <div className="rounded-2xl p-8 md:p-10" style={{ background: "var(--cream)" }}>
-      <div className="grid md:grid-cols-2 gap-10 items-center">
+    <div className="rounded-2xl p-5 md:p-10" style={{ background: "var(--cream)" }}>
+      <div className="grid md:grid-cols-2 gap-8 md:gap-10 items-center">
         <div>
           <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] mb-3" style={{ color: "var(--gold)" }}>
             <Zap className="w-3.5 h-3.5" />
@@ -1655,32 +1736,32 @@ function EPCWidget() {
               const isCurrent = b.letter === PROPERTY.epc.currentBand;
               const isPotential = b.letter === PROPERTY.epc.potentialBand;
               return (
-                <div key={b.letter} className="flex items-center gap-3">
+                <div key={b.letter} className="flex items-center gap-2 md:gap-3">
                   <div
-                    className="display text-sm font-semibold w-5"
+                    className="display text-sm font-semibold w-5 flex-shrink-0"
                     style={{ color: "var(--ink)" }}
                   >
                     {b.letter}
                   </div>
                   <div className="flex-1 relative">
                     <div
-                      className="h-8 flex items-center justify-between px-3 text-xs font-medium relative"
+                      className="h-7 md:h-8 flex items-center px-2 md:px-3 text-[10px] md:text-xs font-medium relative"
                       style={{
                         background: b.color,
                         width: `${b.width}%`,
                         color: ["A", "B", "C"].includes(b.letter) ? "white" : "#1C1A17",
-                        clipPath: "polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%)",
+                        clipPath: "polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%)",
                       }}
                     >
                       <span>{b.range}</span>
                     </div>
                     {isCurrent && (
                       <div
-                        className="absolute top-1/2 -translate-y-1/2 flex items-center gap-2"
-                        style={{ left: `calc(${b.width}% + 8px)` }}
+                        className="absolute top-1/2 -translate-y-1/2"
+                        style={{ left: `calc(${b.width}% + 6px)` }}
                       >
                         <div
-                          className="px-2 py-1 rounded text-[10px] tracking-wider uppercase font-semibold"
+                          className="px-1.5 md:px-2 py-0.5 md:py-1 rounded text-[9px] md:text-[10px] tracking-wider uppercase font-semibold whitespace-nowrap"
                           style={{ background: "var(--ink)", color: "white" }}
                         >
                           Now · {current}
@@ -1689,11 +1770,11 @@ function EPCWidget() {
                     )}
                     {isPotential && (
                       <div
-                        className="absolute top-1/2 -translate-y-1/2 flex items-center gap-2"
-                        style={{ left: `calc(${b.width}% + 8px)` }}
+                        className="absolute top-1/2 -translate-y-1/2"
+                        style={{ left: `calc(${b.width}% + 6px)` }}
                       >
                         <div
-                          className="px-2 py-1 rounded text-[10px] tracking-wider uppercase font-semibold border"
+                          className="px-1.5 md:px-2 py-0.5 md:py-1 rounded text-[9px] md:text-[10px] tracking-wider uppercase font-semibold border whitespace-nowrap"
                           style={{ borderColor: "var(--ink)", color: "var(--ink)", background: "white" }}
                         >
                           Potential · {potential}
