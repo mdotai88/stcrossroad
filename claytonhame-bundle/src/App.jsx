@@ -925,7 +925,7 @@ export default function Claytonhame() {
                 { label: "Bathrooms", value: PROPERTY.baths, icon: Bath },
                 { label: "Sq ft", value: PROPERTY.sqft.toLocaleString(), icon: Ruler },
                 { label: "Guide price", value: "£1.45m", icon: HomeIcon },
-                { label: "Available", value: "Dec 2025", icon: Calendar },
+                { label: "Available", value: "Q2 2026", icon: Calendar },
               ].map((s) => (
                 <div
                   key={s.label}
