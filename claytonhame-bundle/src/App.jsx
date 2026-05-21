@@ -741,14 +741,29 @@ export default function Claytonhame() {
   }, [mobileDetailOpen]);
 
   // On mobile: pin the chat box to the bottom of the visual viewport when the input is focused,
-  // so the input stays just above the keyboard.
+  // so the input stays just above the keyboard. Un-pins when the keyboard is dismissed.
   useEffect(() => {
     const vv = window.visualViewport;
     const el = chatBoxRef.current;
     if (!chatFocused || !vv || !el || window.innerWidth >= 1024) return;
 
+    const resetStyles = () => {
+      ["position", "left", "right", "bottom", "zIndex", "borderRadius", "maxHeight"].forEach((p) => {
+        el.style[p] = "";
+      });
+    };
+
     const apply = () => {
       const bottomOffset = window.innerHeight - vv.height - vv.offsetTop;
+      // If the keyboard is no longer visible, un-pin and clear focus
+      if (bottomOffset < 30) {
+        resetStyles();
+        if (chatInputRef.current && document.activeElement === chatInputRef.current) {
+          chatInputRef.current.blur();
+        }
+        return;
+      }
+      // Keyboard is up — pin to its top
       el.style.position = "fixed";
       el.style.left = "0";
       el.style.right = "0";
@@ -765,9 +780,7 @@ export default function Claytonhame() {
     return () => {
       vv.removeEventListener("resize", apply);
       vv.removeEventListener("scroll", apply);
-      ["position", "left", "right", "bottom", "zIndex", "borderRadius", "maxHeight"].forEach((p) => {
-        el.style[p] = "";
-      });
+      resetStyles();
     };
   }, [chatFocused]);
 
