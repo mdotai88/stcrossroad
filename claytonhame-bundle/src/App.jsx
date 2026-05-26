@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
   Send,
+  Share2,
   MapPin,
   Calendar,
   Ruler,
@@ -86,7 +87,7 @@ const FLOORS = {
         name: "Kitchen & Dining",
         dim: `8.00 × 4.22m  ·  26'3" × 13'10"`,
         image: IMG.kitchen,
-        note: "Rebuilt for modern living as one open-plan room with tall ceilings. Beautiful shaker cabinetry, central peninsula and breakfast bar, chevron oak floor, and full-width glazed doors that fold back onto the patio.",
+        note: "Rebuilt around modern family life as one generous open-plan space with tall ceilings and natural flow throughout. Warm shaker cabinetry, a social central peninsula, chevron oak flooring and full-width glazed doors create a kitchen designed as much for gathering as cooking. Above, a large triple-glazed roof light draws daylight deep into the room by day, while integrated feature LED lighting shifts the atmosphere effortlessly into the evening. Integrated AEG appliances have been chosen for effortless everyday use — including a large-capacity oven with even multi-shelf cooking, a combi microwave-oven pairing speed with proper browning and crispness, and a responsive five-zone induction hob that heats rapidly while remaining sleek and minimal when not in use.",
         poly: "666,2159 1083,2161 1081,1361 663,1360",
       },
       {
@@ -152,7 +153,7 @@ const FLOORS = {
         name: "Master Dressing & Ensuite",
         dim: "Walk-through joinery + fully tiled ensuite",
         image: IMG.masterEn,
-        note: "Walk-through dressing room with feature arch, alcoves and built-in joinery, leading to a beautiful large ensuite — deep green herringbone tiles, brass fittings, walk-in shower, anti-fog mirror with feature lighting.",
+        note: "Walk-through dressing room with feature arch, alcoves and built-in joinery, leading to a beautifully finished large ensuite with deep green herringbone tiling, brushed brass fittings, a walk-in shower and anti-fog mirror with integrated feature lighting. Even practical details have been carefully considered, including an ultra-quiet extractor system that preserves the calm atmosphere of the space.",
         poly: "681,948 676,867 703,866 705,671 677,672 677,570 932,570 934,949",
       },
       {
@@ -374,7 +375,7 @@ const KB = [
     id: "stamp",
     primary: ["stamp duty", "sdlt", "tax"],
     secondary: [],
-    answer: "Stamp duty at the £1,450,000 guide is £91,250 under standard residential rates (no surcharge). Scroll down to the affordability calculator to see the full breakdown — including how it changes if you adjust the price or your deposit.",
+    answer: "Stamp duty at the £1,450,000 guide is £88,750 under standard residential rates (no surcharge). Scroll down to the affordability calculator to see the full breakdown — including how it changes if you adjust the price or your deposit.",
   },
   {
     id: "mortgage",
@@ -504,7 +505,7 @@ const KB = [
     id: "viewing",
     primary: ["viewing", "view", "see it", "visit", "tour", "appointment", "open day", "open house"],
     secondary: ["when", "book"],
-    answer: "Viewings are by appointment with Knight Frank Winchester. Jonathan Lacey on 01962 677 242 (mobile 07483 341 508) or Lottie Lambert on 01962 677 246 (mobile 07977 759 140). Or scroll down and register your interest — they'll come back to you with viewing dates.",
+    answer: "Viewings are by appointment with Knight Frank Winchester. Jonathan Lacey on 01962 677 242 (mobile 07483 341 508) or Lottie Lambert on 01962 677 246 (mobile 07977 759 140). Give them a call or email and they'll set up a time.",
   },
   {
     id: "agent",
@@ -649,7 +650,7 @@ function findAnswer(query) {
   if (!best || bestScore < 3) {
     return {
       matched: false,
-      answer: "That's a question I don't have a direct answer for. The best people for specifics like that are at Knight Frank — Jonathan Lacey on 01962 677 242 or Lottie Lambert on 01962 677 246. Or scroll down and register your interest and they'll come back to you.",
+      answer: "That's a question I don't have a direct answer for. The best people for specifics like that are at Knight Frank — Jonathan Lacey on 01962 677 242 / Jonathan.Lacey@knightfrank.com or Lottie Lambert on 01962 677 246 / Lottie.Lambert@knightfrank.com.",
     };
   }
 
@@ -685,12 +686,13 @@ async function logUnanswered(question) {
 // ---------- Main component ----------
 export default function Claytonhame() {
   const [activeFloor, setActiveFloor] = useState("ground");
-  const [selectedRoom, setSelectedRoom] = useState(null);
+  const [selectedRoom, setSelectedRoom] = useState("kitchen-dining");
   const [hoveredRoom, setHoveredRoom] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [mobileDetailOpen, setMobileDetailOpen] = useState(false);
+  const [shareToast, setShareToast] = useState(false);
   const roomDetailRef = useRef(null);
   const sheetRef = useRef(null);
   const touchStartY = useRef(0);
@@ -827,6 +829,31 @@ export default function Claytonhame() {
     if (window.innerWidth < 1024) {
       // Brief delay so the user sees the room highlight on the plan before the drawer rises
       setTimeout(() => setMobileDetailOpen(true), 250);
+    }
+  };
+
+  const handleShare = async () => {
+    const shareData = {
+      title: "Claytonhame · 76 St Cross Road, Winchester",
+      text: "A four-bedroom refurbished period home in St Cross, Winchester. Guide £1.45m.",
+      url: typeof window !== "undefined" ? window.location.href : "",
+    };
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+        return;
+      }
+    } catch (e) {
+      // user cancelled — silently ignore
+      if (e?.name === "AbortError") return;
+    }
+    // Fallback: copy URL to clipboard
+    try {
+      await navigator.clipboard.writeText(shareData.url);
+      setShareToast(true);
+      setTimeout(() => setShareToast(false), 2200);
+    } catch (e) {
+      console.error("Share failed", e);
     }
   };
 
@@ -1018,6 +1045,20 @@ export default function Claytonhame() {
                 Book a viewing
               </a>
 
+              {/* Desktop Share button */}
+              <button
+                onClick={handleShare}
+                className="hidden md:inline-flex items-center gap-2 px-4 py-2.5 text-sm tracking-wide rounded-full transition-all border"
+                style={{
+                  borderColor: isScrolled ? "var(--line)" : "rgba(245, 239, 230, 0.4)",
+                  color: isScrolled ? "var(--ink-soft)" : "rgba(245, 239, 230, 0.9)",
+                  background: "transparent",
+                }}
+              >
+                <Share2 className="w-3.5 h-3.5" strokeWidth={1.7} />
+                Share
+              </button>
+
               {/* Mobile hamburger */}
               <button
                 onClick={() => setMobileMenuOpen(true)}
@@ -1157,7 +1198,15 @@ export default function Claytonhame() {
 
             <div className="flex items-center gap-2 text-sm flex-wrap" style={{ color: "rgba(245, 239, 230, 0.75)" }}>
               <MapPin className="w-4 h-4" strokeWidth={1.5} />
-              <span>{PROPERTY.address}</span>
+              <a
+                href="https://www.google.com/maps/dir/?api=1&destination=76+St+Cross+Road,+Winchester,+SO23+9QA"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:underline decoration-1 underline-offset-4 transition-all"
+                style={{ color: "inherit", textDecorationColor: "rgba(245, 239, 230, 0.5)" }}
+              >
+                {PROPERTY.address}
+              </a>
               <span className="mx-2">·</span>
               <Shield className="w-4 h-4" strokeWidth={1.5} />
               <span>{PROPERTY.warranty}</span>
@@ -1945,17 +1994,47 @@ export default function Claytonhame() {
         </footer>
       </div>
 
-      {/* BACK TO TOP */}
-      {showBackToTop && (
+      {/* BACK TO TOP + SHARE (mobile-friendly floating cluster) */}
+      <div
+        className="fixed z-30 flex items-center gap-2"
+        style={{ bottom: 20, right: 20 }}
+      >
         <button
-          className="back-to-top fade-in"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          aria-label="Back to top"
+          onClick={handleShare}
+          className="fade-in flex items-center gap-1.5 px-4 h-11 rounded-full text-sm transition-transform hover:-translate-y-0.5"
+          style={{
+            background: "var(--cream)",
+            color: "var(--ink)",
+            border: "1px solid var(--line)",
+            boxShadow: "0 4px 16px rgba(0,0,0,0.12)",
+          }}
+          aria-label="Share"
         >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <polyline points="18 15 12 9 6 15" />
-          </svg>
+          <Share2 className="w-4 h-4" strokeWidth={1.7} />
+          Share
         </button>
+        {showBackToTop && (
+          <button
+            className="back-to-top fade-in"
+            style={{ position: "static" }}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            aria-label="Back to top"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <polyline points="18 15 12 9 6 15" />
+            </svg>
+          </button>
+        )}
+      </div>
+
+      {/* Share toast (clipboard fallback) */}
+      {shareToast && (
+        <div
+          className="fixed bottom-24 left-1/2 -translate-x-1/2 z-40 px-5 py-3 rounded-full text-sm fade-in"
+          style={{ background: "var(--ink)", color: "var(--cream)", boxShadow: "0 6px 20px rgba(0,0,0,0.2)" }}
+        >
+          Link copied to clipboard
+        </div>
       )}
     </div>
   );
