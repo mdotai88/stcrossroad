@@ -1199,7 +1199,7 @@ export default function Claytonhame() {
             <div className="flex items-center gap-2 text-sm flex-wrap" style={{ color: "rgba(245, 239, 230, 0.75)" }}>
               <MapPin className="w-4 h-4" strokeWidth={1.5} />
               <a
-                href="https://www.google.com/maps/dir/?api=1&destination=76+St+Cross+Road,+Winchester,+SO23+9QA"
+                href="https://www.google.com/maps/dir/?api=1&destination=76+St+Cross+Road,+Winchester,+SO23+9PS"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:underline decoration-1 underline-offset-4 transition-all"
