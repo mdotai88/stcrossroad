@@ -36,7 +36,7 @@ const PROPERTY = {
   sqm: 184,
   tenure: "Freehold",
   warranty: "10-year Build Zone warranty",
-  guidePrice: 1450000,
+  guidePrice: 1395000,
   lat: 51.052875,
   lng: -1.321614,
   epc: { current: 80, potential: 86, currentBand: "C", potentialBand: "B" },
@@ -87,7 +87,7 @@ const FLOORS = {
         name: "Kitchen & Dining",
         dim: `8.00 × 4.22m  ·  26'3" × 13'10"`,
         image: IMG.kitchen,
-        note: "Rebuilt around modern family life as one generous open-plan space with tall ceilings and natural flow throughout. Warm shaker cabinetry, a social central peninsula, chevron oak flooring and full-width glazed doors create a kitchen designed as much for gathering as cooking. \n\nAbove, a large triple-glazed roof light draws daylight deep into the room by day, while integrated feature LED lighting shifts the atmosphere effortlessly into the evening. \n\nIntegrated AEG appliances have been chosen for effortless everyday use — including a large-capacity oven with even multi-shelf cooking, a combi microwave-oven pairing speed with proper browning and crispness, and a responsive five-zone induction hob that heats rapidly while remaining sleek and minimal when not in use.",
+        note: "Rebuilt around modern family life as one generous open-plan space with tall ceilings and natural flow throughout. Warm shaker cabinetry, a social central peninsula, chevron oak flooring and full-width glazed doors create a kitchen designed as much for gathering as cooking. Above, a large triple-glazed roof light draws daylight deep into the room by day, while integrated feature LED lighting shifts the atmosphere effortlessly into the evening. Integrated AEG appliances have been chosen for effortless everyday use — including a large-capacity oven with even multi-shelf cooking, a combi microwave-oven pairing speed with proper browning and crispness, and a responsive five-zone induction hob that heats rapidly while remaining sleek and minimal when not in use.",
         poly: "666,2159 1083,2161 1081,1361 663,1360",
       },
       {
@@ -369,19 +369,19 @@ const KB = [
     id: "price",
     primary: ["price", "guide", "cost", "asking", "how much"],
     secondary: ["million", "m", "guide price"],
-    answer: "The guide price is £1,450,000.",
+    answer: "The guide price is £1,395,000.",
   },
   {
     id: "stamp",
     primary: ["stamp duty", "sdlt", "tax"],
     secondary: [],
-    answer: "Stamp duty at the £1,450,000 guide is £88,750 under standard residential rates (no surcharge). Scroll down to the affordability calculator to see the full breakdown — including how it changes if you adjust the price or your deposit.",
+    answer: "Stamp duty at the £1,395,000 guide is £83,250 under standard residential rates (no surcharge). Scroll down to the affordability calculator to see the full breakdown — including how it changes if you adjust the price or your deposit.",
   },
   {
     id: "mortgage",
     primary: ["mortgage", "monthly", "repayment", "payment", "afford"],
     secondary: ["interest", "rate", "term"],
-    answer: "Roughly £5,500 a month on a 25% deposit over 30 years at 4.5%. The calculator below this section lets you change any of those numbers to fit your circumstances.",
+    answer: "Roughly £5,300 a month on a 25% deposit over 30 years at 4.5%. The calculator below this section lets you change any of those numbers to fit your circumstances.",
   },
 
   // EPC / SYSTEMS
@@ -835,7 +835,7 @@ export default function Claytonhame() {
   const handleShare = async () => {
     const shareData = {
       title: "Claytonhame · 76 St Cross Road, Winchester",
-      text: "A four-bedroom refurbished period home in St Cross, Winchester. Guide £1.45m.",
+      text: "A four-bedroom refurbished period home in St Cross, Winchester. Guide £1.395m.",
       url: typeof window !== "undefined" ? window.location.href : "",
     };
     try {
@@ -1172,7 +1172,7 @@ export default function Claytonhame() {
                 { label: "Bedrooms", value: PROPERTY.beds, icon: BedDouble },
                 { label: "Bathrooms", value: PROPERTY.baths, icon: Bath },
                 { label: "Sq ft", value: PROPERTY.sqft.toLocaleString(), icon: Ruler },
-                { label: "Guide price", value: "£1.45m", icon: HomeIcon },
+                { label: "Guide price", value: "£1.395m", icon: HomeIcon },
                 { label: "Available", value: "Q2 2026", icon: Calendar },
               ].map((s) => (
                 <div
