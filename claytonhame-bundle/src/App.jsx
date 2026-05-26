@@ -87,7 +87,7 @@ const FLOORS = {
         name: "Kitchen & Dining",
         dim: `8.00 × 4.22m  ·  26'3" × 13'10"`,
         image: IMG.kitchen,
-        note: "Rebuilt around modern family life as one generous open-plan space with tall ceilings and natural flow throughout. Warm shaker cabinetry, a social central peninsula, chevron oak flooring and full-width glazed doors create a kitchen designed as much for gathering as cooking. Above, a large triple-glazed roof light draws daylight deep into the room by day, while integrated feature LED lighting shifts the atmosphere effortlessly into the evening. Integrated AEG appliances have been chosen for effortless everyday use — including a large-capacity oven with even multi-shelf cooking, a combi microwave-oven pairing speed with proper browning and crispness, and a responsive five-zone induction hob that heats rapidly while remaining sleek and minimal when not in use.",
+        note: "Rebuilt around modern family life as one generous open-plan space with tall ceilings and natural flow throughout. Warm shaker cabinetry, a social central peninsula, chevron flooring and full-width glazed doors create a kitchen designed as much for gathering as cooking. Above, a large triple-glazed roof light draws daylight deep into the room by day, while integrated feature LED lighting shifts the atmosphere effortlessly into the evening. Integrated AEG appliances have been chosen for effortless everyday use — including a large-capacity oven with even multi-shelf cooking, a combi microwave-oven pairing speed with proper browning and crispness, and a responsive five-zone induction hob that heats rapidly while remaining sleek and minimal when not in use.",
         poly: "666,2159 1083,2161 1081,1361 663,1360",
       },
       {
@@ -109,9 +109,9 @@ const FLOORS = {
       {
         id: "hallway",
         name: "Entrance Hallway",
-        dim: "Original features · chevron oak",
+        dim: "Welcoming Entrance",
         image: IMG.hallway,
-        note: "Original cornicing, wainscoting and chevron oak underfoot. The staircase sweeps up to the right, with a clear sightline through to the kitchen and garden beyond.",
+        note: "Access straight into the boot room, and on to the living room or large bright kitchen and dining. The staircase sweeps up on the right, with a clear sightline through to the kitchen and garden beyond.",
         poly: "910,2197 1081,2197 1080,2558 910,2558",
       },
       {
@@ -447,13 +447,13 @@ const KB = [
     id: "refurb",
     primary: ["refurbish", "renovat", "redone", "work done", "what was done", "what's new", "spec"],
     secondary: ["full", "back to brick"],
-    answer: "A full back-to-brick refurbishment. Re-wired and re-plumbed throughout, new gas heating system, bespoke kitchen, three new bathrooms, chevron engineered oak flooring to principal rooms, replacement sash windows where required, acoustic insulation between floors, two-zone landscaped garden — and original cornicing, wainscoting and period features retained.",
+    answer: "A full back-to-brick refurbishment. Re-wired and re-plumbed throughout, new gas heating system, bespoke kitchen, three new bathrooms, chevron flooring to principal rooms, replacement sash windows, external wall insulation, two-zone landscaped garden — and cornicing, wainscoting and period features.",
   },
   {
     id: "materials",
     primary: ["materials", "finishes", "spec", "specification", "oak", "brass", "tile", "stone"],
     secondary: ["floor", "wall"],
-    answer: "Chevron-laid engineered oak to the principal rooms; deep green metro tile and brass fittings in the bathrooms; bespoke shaker cabinetry in the kitchen and utility; panelled wainscoting throughout the principal rooms; aluminium bifold doors to the garden.",
+    answer: "Chevron-laid flooring to the ground floor rooms; deep green tile and brass fittings in the bathrooms; bespoke shaker cabinetry in the kitchen and utility; panelled wainscoting throughout the principal rooms; bifold doors to the garden.",
   },
 
   // LOCATION
@@ -523,7 +523,7 @@ const KB = [
     id: "developer",
     primary: ["ffour", "developer", "who built", "who refurbished", "builder", "renovation team"],
     secondary: [],
-    answer: "ffour Estates — a Winchester-based developer focused on careful refurbishments of period homes, working with an experienced construction team specialising in high-quality residential work. Their tagline: \"Beautiful homes for easy living.\"",
+    answer: "FFour Estates — a Winchester-based developer focused on careful refurbishments of period homes, working with an experienced construction team specialising in high-quality residential work. Their tagline: \"Beautiful homes for easy living.\"",
   },
 
   // --- Detail & specification ---
