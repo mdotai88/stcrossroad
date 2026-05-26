@@ -373,7 +373,7 @@ const KB = [
   },
   {
     id: "stamp",
-    primary: ["stamp duty", "sdlt", "tax"],
+    primary: ["stamp duty", "sdlt"],
     secondary: [],
     answer: "Stamp duty at the £1,395,000 guide is £83,250 under standard residential rates (no surcharge). Scroll down to the affordability calculator to see the full breakdown — including how it changes if you adjust the price or your deposit.",
   },
@@ -413,8 +413,8 @@ const KB = [
   },
   {
     id: "council-tax",
-    primary: ["council tax"],
-    secondary: ["band"],
+    primary: ["council tax", "how much is council", "council tax band"],
+    secondary: ["band", "how much"],
     answer: "The property is Council Tax band F. Please refer to the local council for current prices.",
   },
   {
