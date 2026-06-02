@@ -2017,6 +2017,22 @@ export default function Claytonhame() {
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
+                  <div className="text-xs opacity-60 hidden sm:block">Construction</div>
+                  <a
+                    href="https://ffour.co.uk/plan-your-renovation/"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="FFour Construction (opens in new window)"
+                    className="inline-block hover:opacity-80 transition-opacity"
+                  >
+                    <img
+                      src="https://ffour.co.uk/wp-content/uploads/2026/06/FFOUR-CONSTRUCTION-Logo-Transparent-White.png"
+                      alt="FFour Construction"
+                      style={{ height: 36, width: "auto", maxWidth: "none", display: "block" }}
+                    />
+                  </a>
+                </div>
+                <div className="flex items-center gap-3">
                   <div className="text-xs opacity-60 hidden sm:block">Finance partner</div>
                   <a
                     href="https://togethermoney.com/"
