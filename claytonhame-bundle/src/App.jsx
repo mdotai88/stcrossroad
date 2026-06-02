@@ -1418,7 +1418,7 @@ export default function Claytonhame() {
                     key={key}
                     onClick={() => {
                       setActiveFloor(key);
-                      setSelectedRoom(null);
+                      setSelectedRoom(key === "ground" ? "kitchen-dining" : null);
                       setHoveredRoom(null);
                     }}
                     className="px-4 md:px-6 py-2.5 text-xs md:text-sm rounded-full transition-all"
@@ -1960,7 +1960,7 @@ export default function Claytonhame() {
                 src={KF_LOGO_URL}
                 alt="Knight Frank"
                 className="mb-3"
-                style={{ height: 24, width: "auto", filter: "brightness(0) invert(1)", opacity: 0.85 }}
+                style={{ height: 24, width: "auto", maxWidth: "none", display: "block", filter: "brightness(0) invert(1)", opacity: 0.85 }}
               />
               <div className="text-xs uppercase tracking-widest mb-2 opacity-50">Sole Agent</div>
               <div className="opacity-80 mb-1">14 Jewry Street</div>
@@ -1988,6 +1988,50 @@ export default function Claytonhame() {
               </a>
               <div className="opacity-50 mt-4 text-xs leading-relaxed">
                 Particulars are illustrative. All measurements approximate. Images are computer generated.
+              </div>
+            </div>
+          </div>
+
+          {/* Project partners band */}
+          <div
+            className="max-w-6xl mx-auto px-6 mt-12 pt-8"
+            style={{ borderTop: "1px solid rgba(255,255,255,0.1)" }}
+          >
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+              <div className="text-xs uppercase tracking-[0.2em] opacity-50">Project partners</div>
+              <div className="flex flex-wrap items-center gap-5">
+                <div className="flex items-center gap-3">
+                  <div className="text-xs opacity-60 hidden sm:block">Architecture</div>
+                  <a
+                    href="https://cfw-architects.com/"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Chaplin Farrant Wiltshire Architects (opens in new window)"
+                    className="inline-block hover:opacity-80 transition-opacity"
+                  >
+                    <img
+                      src="https://ffour.co.uk/wp-content/uploads/2026/06/CFW-Architects-FFour-Estates.jpg"
+                      alt="Chaplin Farrant Wiltshire Architects"
+                      style={{ height: 36, width: "auto", maxWidth: "none", display: "block" }}
+                    />
+                  </a>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="text-xs opacity-60 hidden sm:block">Finance partner</div>
+                  <a
+                    href="https://togethermoney.com/"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Together Money (opens in new window)"
+                    className="inline-block hover:opacity-80 transition-opacity"
+                  >
+                    <img
+                      src="https://ffour.co.uk/wp-content/uploads/2026/06/Together-Money-FFour-Estates.png"
+                      alt="Together Money"
+                      style={{ height: 36, width: "auto", maxWidth: "none", display: "block" }}
+                    />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -2265,5 +2309,3 @@ function EPCWidget() {
     </div>
   );
 }
-
-
