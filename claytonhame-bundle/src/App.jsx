@@ -2048,6 +2048,22 @@ export default function Claytonhame() {
                     />
                   </a>
                 </div>
+                <div className="flex items-center gap-3">
+                  <div className="text-xs opacity-60 hidden sm:block">Warranty</div>
+                  <a
+                    href="https://www.build-zone.com/"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Build Zone (opens in new window)"
+                    className="inline-block hover:opacity-80 transition-opacity"
+                  >
+                    <img
+                      src="https://ffour.co.uk/wp-content/uploads/2026/06/Build-Zone-FFour-Estates-scaled.png"
+                      alt="Build Zone"
+                      style={{ height: 36, width: "auto", maxWidth: "none", display: "block" }}
+                    />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
