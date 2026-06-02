@@ -2026,7 +2026,7 @@ export default function Claytonhame() {
                     className="inline-block hover:opacity-80 transition-opacity"
                   >
                     <img
-                      src="https://ffour.co.uk/wp-content/uploads/2026/06/FFOUR-CONSTRUCTION-Logo-Transparent-White.png"
+                      src="https://ffour.co.uk/wp-content/uploads/2026/06/FFOUR-CONSTRUCTION-Just-Text-Transparent-White.png"
                       alt="FFour Construction"
                       style={{ height: 36, width: "auto", maxWidth: "none", display: "block" }}
                     />
