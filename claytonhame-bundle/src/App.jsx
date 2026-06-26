@@ -45,31 +45,31 @@ const PROPERTY = {
   tagline: "Beautiful Homes for Easy Living",
 };
 
-const LOGO_URL = "https://ffour.co.uk/wp-content/uploads/2023/11/FFOUR-Estates-Logo-Label-Tag.png";
-const LOGO_URL_SCROLLED = "https://ffour.co.uk/wp-content/uploads/2026/05/FFOUR-ESTATES-Logo-Transparent-GMAIL.png";
-const KF_LOGO_URL = "https://ffour.co.uk/wp-content/uploads/2026/05/Knight_Frank_Logo.svg.png";
+const LOGO_URL = "/wp-content/uploads/2023/11/FFOUR-Estates-Logo-Label-Tag.png";
+const LOGO_URL_SCROLLED = "/wp-content/uploads/2026/05/FFOUR-ESTATES-Logo-Transparent-GMAIL.png";
+const KF_LOGO_URL = "/wp-content/uploads/2026/05/Knight_Frank_Logo.svg.png";
 
 const IMG = {
-  hallway: "https://ffour.co.uk/wp-content/uploads/2026/05/1-Hallway.png",
-  drawing: "https://ffour.co.uk/wp-content/uploads/2026/05/2-Living-Room.png",
-  wcBoot: "https://ffour.co.uk/wp-content/uploads/2026/05/3-WC-Boot-Room.png",
-  utility: "https://ffour.co.uk/wp-content/uploads/2026/05/4-Utility-Room.png",
-  kitchen: "https://ffour.co.uk/wp-content/uploads/2026/05/5-Kitchen-Dining.png",
-  garden: "https://ffour.co.uk/wp-content/uploads/2026/05/6-Garden.png",
-  master: "https://ffour.co.uk/wp-content/uploads/2026/05/7-Master-Bedroom.png",
-  masterEn: "https://ffour.co.uk/wp-content/uploads/2026/05/8-Master-Ensuite.png",
-  bed2: "https://ffour.co.uk/wp-content/uploads/2026/05/9-2nd-Bedroom.png",
-  bed2b: "https://ffour.co.uk/wp-content/uploads/2026/05/10-2nd-Bedroom.png",
-  bed3: "https://ffour.co.uk/wp-content/uploads/2026/05/11-3rd-Bedroom.png",
-  bed4: "https://ffour.co.uk/wp-content/uploads/2026/05/12-4th-Bedroom.png",
-  famBath: "https://ffour.co.uk/wp-content/uploads/2026/05/13-Family-Bathroom.png",
+  hallway: "/wp-content/uploads/2026/05/1-Hallway.png",
+  drawing: "/wp-content/uploads/2026/05/2-Living-Room.png",
+  wcBoot: "/wp-content/uploads/2026/05/3-WC-Boot-Room.png",
+  utility: "/wp-content/uploads/2026/05/4-Utility-Room.png",
+  kitchen: "/wp-content/uploads/2026/05/5-Kitchen-Dining.png",
+  garden: "/wp-content/uploads/2026/05/6-Garden.png",
+  master: "/wp-content/uploads/2026/05/7-Master-Bedroom.png",
+  masterEn: "/wp-content/uploads/2026/05/8-Master-Ensuite.png",
+  bed2: "/wp-content/uploads/2026/05/9-2nd-Bedroom.png",
+  bed2b: "/wp-content/uploads/2026/05/10-2nd-Bedroom.png",
+  bed3: "/wp-content/uploads/2026/05/11-3rd-Bedroom.png",
+  bed4: "/wp-content/uploads/2026/05/12-4th-Bedroom.png",
+  famBath: "/wp-content/uploads/2026/05/13-Family-Bathroom.png",
 };
 
 const FLOORS = {
   ground: {
     label: "Ground Floor",
     plan: {
-      url: "https://ffour.co.uk/wp-content/uploads/2026/05/St-Cross-Ground-Floor-scaled.png",
+      url: "/wp-content/uploads/2026/05/St-Cross-Ground-Floor-scaled.png",
       width: 1554,
       height: 3111,
     },
@@ -127,7 +127,7 @@ const FLOORS = {
   first: {
     label: "First Floor",
     plan: {
-      url: "https://ffour.co.uk/wp-content/uploads/2026/05/St-Cross-First-Floor.png",
+      url: "/wp-content/uploads/2026/05/St-Cross-First-Floor.png",
       width: 1394,
       height: 1503,
     },
@@ -169,7 +169,7 @@ const FLOORS = {
   second: {
     label: "Second Floor",
     plan: {
-      url: "https://ffour.co.uk/wp-content/uploads/2026/05/St-Cross-Second-Floor.png",
+      url: "/wp-content/uploads/2026/05/St-Cross-Second-Floor.png",
       width: 1471,
       height: 858,
     },
@@ -2010,7 +2010,7 @@ export default function Claytonhame() {
                     className="inline-block hover:opacity-80 transition-opacity"
                   >
                     <img
-                      src="https://ffour.co.uk/wp-content/uploads/2026/06/CFW-Architects-FFour-Estates.jpg"
+                      src="/wp-content/uploads/2026/06/CFW-Architects-FFour-Estates.jpg"
                       alt="Chaplin Farrant Wiltshire Architects"
                       style={{ height: 36, width: "auto", maxWidth: "none", display: "block" }}
                     />
@@ -2026,7 +2026,7 @@ export default function Claytonhame() {
                     className="inline-block hover:opacity-80 transition-opacity"
                   >
                     <img
-                      src="https://ffour.co.uk/wp-content/uploads/2026/06/FFOUR-CONSTRUCTION-Just-Text-Transparent-White.png"
+                      src="/wp-content/uploads/2026/06/FFOUR-CONSTRUCTION-Just-Text-Transparent-White.png"
                       alt="FFour Construction"
                       style={{ height: 36, width: "auto", maxWidth: "none", display: "block" }}
                     />
@@ -2042,7 +2042,7 @@ export default function Claytonhame() {
                     className="inline-block hover:opacity-80 transition-opacity"
                   >
                     <img
-                      src="https://ffour.co.uk/wp-content/uploads/2026/06/Together-Money-FFour-Estates.png"
+                      src="/wp-content/uploads/2026/06/Together-Money-FFour-Estates.png"
                       alt="Together Money"
                       style={{ height: 36, width: "auto", maxWidth: "none", display: "block" }}
                     />
@@ -2058,7 +2058,7 @@ export default function Claytonhame() {
                     className="inline-block hover:opacity-80 transition-opacity"
                   >
                     <img
-                      src="https://ffour.co.uk/wp-content/uploads/2026/06/Build-Zone-FFour-Estates-scaled.png"
+                      src="/wp-content/uploads/2026/06/Build-Zone-FFour-Estates-scaled.png"
                       alt="Build Zone"
                       style={{ height: 36, width: "auto", maxWidth: "none", display: "block" }}
                     />
