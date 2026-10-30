@@ -48,6 +48,9 @@ const PROPERTY = {
 const LOGO_URL = "/wp-content/uploads/2023/11/FFOUR-Estates-Logo-Label-Tag.png";
 const LOGO_URL_SCROLLED = "/wp-content/uploads/2026/05/FFOUR-ESTATES-Logo-Transparent-GMAIL.png";
 const KF_LOGO_URL = "/wp-content/uploads/2026/05/Knight_Frank_Logo.svg.png";
+const CCNH_LOGO_URL = "/wp-content/uploads/2026/10/CCNH-Code-Member-Logo-2026.png";
+const CODE_PDF_URL = "/wp-content/uploads/2026/10/Consumer-Code-for-New-Homes-v5.pdf";
+const COMPLAINTS_URL = "/complaints-procedure.html";
 
 const IMG = {
   hallway: "/wp-content/uploads/2026/05/1-Hallway.png",
@@ -401,7 +404,19 @@ const KB = [
     id: "warranty",
     primary: ["warranty", "guarantee", "build zone", "structural", "insurance", "covered"],
     secondary: [],
-    answer: "Claytonhame is protected by a 10-year Build Zone structural warranty — the same insurance-backed cover a new build would carry. FFour Estates also operate under the Consumer Code for New Homes.",
+    answer: "Claytonhame is protected by a 10-year Build Zone structural warranty — the same insurance-backed cover a new build would carry. The developer, St Cross Limited, also subscribes to and complies with the Consumer Code for New Homes, which protects buyers from reservation until two years after legal completion. The full Code and our complaints procedure are linked in the footer.",
+  },
+  {
+    id: "consumer-code",
+    primary: ["consumer code", "code for new homes", "ccnh", "buyer protection", "protection", "ombudsman", "dispute", "redress"],
+    secondary: ["member", "code", "scheme"],
+    answer: "St Cross Limited subscribes to and complies with the Consumer Code for New Homes. The Code protects buyers from the date of reservation until two years after legal completion — covering fair sales practice, reservation and deposit protection, and after-sales service — and is backed by a free Independent Dispute Resolution Scheme. You can read the full Code (PDF) and our complaints procedure via the links in the footer, or visit consumercodefornewhomes.com.",
+  },
+  {
+    id: "complaints",
+    primary: ["complaint", "complain", "complaints procedure", "unhappy", "not happy", "something goes wrong", "after sales", "after-sales", "snag", "snagging", "defect"],
+    secondary: ["procedure", "process", "escalate", "resolve"],
+    answer: "St Cross Limited provides an after-sales service and a formal complaints procedure for two years after legal completion. Complaints are acknowledged in writing within 5 working days, with a detailed response within 20 working days. If we can't resolve things together, you can escalate to Build Zone (for structural warranty matters) or to the Code's free Independent Dispute Resolution Scheme. The full procedure is linked in the footer of this page.",
   },
 
   // PROPERTY FACTS
@@ -523,7 +538,7 @@ const KB = [
     id: "developer",
     primary: ["ffour", "developer", "who built", "who refurbished", "builder", "renovation team"],
     secondary: [],
-    answer: "ffour Estates — a Winchester-based developer focused on careful refurbishments of period homes, working with an experienced construction team specialising in high-quality residential work. Their tagline: \"Beautiful homes for easy living.\"",
+    answer: "ffour Estates — a Winchester-based developer focused on careful refurbishments of period homes, working with an experienced construction team specialising in high-quality residential work. Their tagline: \"Beautiful homes for easy living.\" The legal seller of Claytonhame is St Cross Limited (Company No. 16080695), trading as ffour Estates, a member of the Consumer Code for New Homes.",
   },
 
   // --- Detail & specification ---
@@ -1210,6 +1225,8 @@ export default function Claytonhame() {
               <span className="mx-2">·</span>
               <Shield className="w-4 h-4" strokeWidth={1.5} />
               <span>{PROPERTY.warranty}</span>
+              <span className="mx-2">·</span>
+              <span>Consumer Code for New Homes member</span>
               <span className="mx-2">·</span>
               <span className="italic">Sole agent: Knight Frank</span>
             </div>
@@ -1946,6 +1963,10 @@ export default function Claytonhame() {
               <div className="display text-xl mb-2">Claytonhame</div>
               <div className="opacity-60">76 St Cross Road, Winchester SO23</div>
               <div className="opacity-50 italic mt-3 text-xs">{PROPERTY.tagline}</div>
+              <div className="opacity-60 mt-3 text-xs leading-relaxed">
+                Claytonhame is developed and sold by St Cross Limited (Company No. 16080695),
+                trading as ffour Estates.
+              </div>
               <a
                 href="https://ffour.co.uk"
                 target="_blank"
@@ -1986,6 +2007,36 @@ export default function Claytonhame() {
               >
                 View EPC certificate
               </a>
+              <a
+                href="https://www.consumercodefornewhomes.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Consumer Code for New Homes (opens in new window)"
+                className="inline-block mt-5 rounded-lg p-2 hover:opacity-90 transition-opacity"
+                style={{ background: "#fff" }}
+              >
+                <img
+                  src={CCNH_LOGO_URL}
+                  alt="Consumer Code for New Homes — Code Member 2026"
+                  style={{ height: 76, width: "auto", display: "block" }}
+                />
+              </a>
+              <div className="opacity-80 mt-3 text-xs leading-relaxed">
+                St Cross Limited subscribes to and complies with the Consumer Code for New Homes.
+              </div>
+              <div className="mt-2 flex flex-col gap-1 text-xs">
+                <a
+                  href={CODE_PDF_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="opacity-60 hover:opacity-100 underline"
+                >
+                  Read the Code (PDF)
+                </a>
+                <a href={COMPLAINTS_URL} rel="nofollow" className="opacity-60 hover:opacity-100 underline">
+                  Our complaints procedure
+                </a>
+              </div>
               <div className="opacity-50 mt-4 text-xs leading-relaxed">
                 Particulars are illustrative. All measurements approximate. Images are computer generated.
               </div>
