@@ -1955,7 +1955,7 @@ export default function Claytonhame() {
 
         {/* FOOTER */}
         <footer
-          className="border-t py-14"
+          className="border-t pt-14 pb-28"
           style={{ borderColor: "var(--line)", background: "var(--ink)", color: "var(--cream-deep)" }}
         >
           <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-10 text-sm">
@@ -2007,21 +2007,7 @@ export default function Claytonhame() {
               >
                 View EPC certificate
               </a>
-              <a
-                href="https://www.consumercodefornewhomes.com"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Consumer Code for New Homes (opens in new window)"
-                className="inline-block mt-5 rounded-lg p-2 hover:opacity-90 transition-opacity"
-                style={{ background: "#fff" }}
-              >
-                <img
-                  src={CCNH_LOGO_URL}
-                  alt="Consumer Code for New Homes — Code Member 2026"
-                  style={{ height: 76, width: "auto", display: "block" }}
-                />
-              </a>
-              <div className="opacity-80 mt-3 text-xs leading-relaxed">
+              <div className="opacity-80 mt-4 text-xs leading-relaxed">
                 St Cross Limited subscribes to and complies with the Consumer Code for New Homes.
               </div>
               <div className="mt-2 flex flex-col gap-1 text-xs">
@@ -2112,6 +2098,23 @@ export default function Claytonhame() {
                       src="/wp-content/uploads/2026/06/Build-Zone-FFour-Estates-scaled.png"
                       alt="Build Zone"
                       style={{ height: 36, width: "auto", maxWidth: "none", display: "block" }}
+                    />
+                  </a>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="text-xs opacity-60 hidden sm:block">Consumer Code</div>
+                  <a
+                    href="https://www.consumercodefornewhomes.com"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Consumer Code for New Homes (opens in new window)"
+                    className="inline-block hover:opacity-80 transition-opacity rounded-md p-1.5"
+                    style={{ background: "#fff" }}
+                  >
+                    <img
+                      src={CCNH_LOGO_URL}
+                      alt="Consumer Code for New Homes — Code Member 2026"
+                      style={{ height: 52, width: "auto", maxWidth: "none", display: "block" }}
                     />
                   </a>
                 </div>
