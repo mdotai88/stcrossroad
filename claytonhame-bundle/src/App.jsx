@@ -22,6 +22,13 @@ import {
   Check,
   Download,
   Zap,
+  Play,
+  Pause,
+  Volume2,
+  VolumeX,
+  Maximize,
+  Minimize,
+  RotateCcw,
 } from "lucide-react";
 
 // ---------- Static data ----------
@@ -51,6 +58,48 @@ const KF_LOGO_URL = "/wp-content/uploads/2026/05/Knight_Frank_Logo.svg.png";
 const CCNH_LOGO_URL = "/wp-content/uploads/2026/10/CCNH-Code-Member-Logo-2026.png";
 const CODE_PDF_URL = "/wp-content/uploads/2026/10/Consumer-Code-for-New-Homes-v5.pdf";
 const COMPLAINTS_URL = "/complaints-procedure.html";
+
+// ---------- Film ----------
+// Hosted on YouTube, but played inside our own chrome: no YouTube logo, no
+// title bar, no "Watch on YouTube" button, no related-video end screen, and
+// not a single request to a Google domain until the visitor presses play.
+const FILM_ID = "RfgFY31Bg34";
+const FILM_POSTER = "/wp-content/uploads/2026/11/film-poster.jpg";
+const FILM_TITLE = "76 St Cross Road, Winchester — full tour";
+
+function loadYouTubeApi() {
+  if (typeof window === "undefined") return Promise.reject(new Error("no window"));
+  if (window.__ytApiPromise) return window.__ytApiPromise;
+  window.__ytApiPromise = new Promise((resolve, reject) => {
+    if (window.YT && window.YT.Player) {
+      resolve(window.YT);
+      return;
+    }
+    const timer = setTimeout(() => reject(new Error("YouTube API timed out")), 9000);
+    const prev = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = () => {
+      clearTimeout(timer);
+      if (typeof prev === "function") prev();
+      resolve(window.YT);
+    };
+    const tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+    tag.async = true;
+    tag.onerror = () => {
+      clearTimeout(timer);
+      reject(new Error("YouTube API failed to load"));
+    };
+    document.head.appendChild(tag);
+  });
+  return window.__ytApiPromise;
+}
+
+const fmtClock = (s) => {
+  const t = isFinite(s) && s > 0 ? s : 0;
+  const m = Math.floor(t / 60);
+  const sec = Math.floor(t % 60);
+  return m + ":" + String(sec).padStart(2, "0");
+};
 
 const IMG = {
   hallway: "/wp-content/uploads/2026/05/1-Hallway.png",
@@ -991,6 +1040,87 @@ export default function Claytonhame() {
           border: none;
         }
         .back-to-top:hover { transform: translateY(-2px); }
+
+        /* ---- Film player ---- */
+        .film-shell {
+          box-shadow: 0 34px 90px -34px rgba(0,0,0,0.75);
+        }
+        .film-shell iframe {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          border: 0;
+        }
+        .film-shell:fullscreen { border-radius: 0; }
+        .film-play {
+          width: 76px;
+          height: 76px;
+          background: rgba(245,239,230,0.16);
+          border: 1px solid rgba(245,239,230,0.55);
+          color: #F5EFE6;
+          backdrop-filter: blur(6px);
+          transition: transform .4s cubic-bezier(.22,.61,.36,1), background .4s ease, border-color .4s ease;
+        }
+        @media (min-width: 768px) {
+          .film-play { width: 92px; height: 92px; }
+        }
+        .film-trigger:hover .film-play,
+        .film-trigger:focus-visible .film-play {
+          transform: scale(1.06);
+          background: rgba(245,239,230,0.22);
+          border-color: rgba(245,239,230,0.9);
+        }
+        .film-bar {
+          position: relative;
+          height: 3px;
+          border-radius: 999px;
+          background: rgba(245,239,230,0.24);
+          cursor: pointer;
+        }
+        .film-bar::before {
+          content: '';
+          position: absolute;
+          left: 0; right: 0; top: -10px; bottom: -10px;
+        }
+        .film-bar-fill {
+          position: absolute;
+          left: 0; top: 0; bottom: 0;
+          border-radius: 999px;
+          background: var(--gold-soft);
+        }
+        .film-bar-knob {
+          position: absolute;
+          top: 50%;
+          width: 11px; height: 11px;
+          margin-left: -5.5px;
+          border-radius: 50%;
+          background: var(--gold-soft);
+          transform: translateY(-50%) scale(0);
+          transition: transform .2s ease;
+        }
+        .film-bar:hover .film-bar-knob { transform: translateY(-50%) scale(1); }
+        .film-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 32px; height: 32px;
+          border-radius: 50%;
+          background: transparent;
+          border: none;
+          color: inherit;
+          cursor: pointer;
+          transition: background .2s ease;
+        }
+        .film-btn:hover { background: rgba(245,239,230,0.16); }
+        .film-spinner {
+          width: 34px; height: 34px;
+          border-radius: 50%;
+          border: 2px solid rgba(245,239,230,0.22);
+          border-top-color: rgba(245,239,230,0.9);
+          animation: filmSpin 0.9s linear infinite;
+        }
+        @keyframes filmSpin { to { transform: rotate(360deg); } }
       `}</style>
 
       <div style={{ fontFamily: "Manrope, sans-serif" }}>
@@ -1044,6 +1174,7 @@ export default function Claytonhame() {
                 style={{ color: isScrolled ? "var(--ink-soft)" : "rgba(245, 239, 230, 0.9)" }}
               >
                 <a href="#story" className="hover:opacity-70 transition-opacity">The House</a>
+                <a href="#film" className="hover:opacity-70 transition-opacity">Film</a>
                 <a href="#floorplan" className="hover:opacity-70 transition-opacity">Floorplan</a>
                 <a href="#concierge" className="hover:opacity-70 transition-opacity">Ask</a>
                 <a href="#area" className="hover:opacity-70 transition-opacity">Area</a>
@@ -1113,6 +1244,7 @@ export default function Claytonhame() {
             <div className="px-8 pt-8 pb-12 flex flex-col gap-6 display text-3xl" style={{ color: "var(--cream)" }}>
               {[
                 { href: "#story", label: "The House" },
+                { href: "#film", label: "The Film" },
                 { href: "#floorplan", label: "Floorplan" },
                 { href: "#concierge", label: "Ask the House" },
                 { href: "#area", label: "The Area" },
@@ -1173,11 +1305,30 @@ export default function Claytonhame() {
               <span style={{ fontStyle: "italic", color: "var(--gold-soft)" }}>Re-imagined</span> for the way you live now.
             </h1>
             <p
-              className="max-w-xl text-lg leading-relaxed mb-12"
+              className="max-w-xl text-lg leading-relaxed mb-8"
               style={{ color: "rgba(245, 239, 230, 0.85)" }}
             >
               A four-bedroom period home on one of Winchester's most cherished streets, taken back to the brick and rebuilt with quiet, lasting craft.
             </p>
+
+            <a
+              href="#film"
+              className="group inline-flex items-center gap-4 mb-12 pl-2 pr-7 py-2 rounded-full border transition-all hover:opacity-90"
+              style={{
+                borderColor: "rgba(245, 239, 230, 0.35)",
+                color: "#F5EFE6",
+                background: "rgba(245, 239, 230, 0.07)",
+                backdropFilter: "blur(6px)",
+              }}
+            >
+              <span
+                className="flex items-center justify-center rounded-full transition-transform group-hover:scale-105"
+                style={{ width: 36, height: 36, background: "rgba(245, 239, 230, 0.96)", color: "var(--ink)" }}
+              >
+                <Play className="w-3.5 h-3.5" fill="currentColor" strokeWidth={0} style={{ marginLeft: 2 }} />
+              </span>
+              <span className="text-xs uppercase tracking-[0.25em]">Watch the film</span>
+            </a>
 
             <div
               className="grid grid-cols-2 md:grid-cols-5 gap-px rounded-lg overflow-hidden mb-10"
@@ -1241,6 +1392,47 @@ export default function Claytonhame() {
               <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1" />
               <span>Back to ffour Estates</span>
             </a>
+          </div>
+        </section>
+
+        {/* FILM */}
+        <section id="film" className="py-20 md:py-24" style={{ background: "var(--ink)" }}>
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="flex items-end justify-between flex-wrap gap-6 mb-10">
+              <div>
+                <div className="text-xs uppercase tracking-[0.25em] mb-4" style={{ color: "var(--gold-soft)" }}>
+                  The Film
+                </div>
+                <h2
+                  className="display text-4xl md:text-5xl font-light leading-tight"
+                  style={{ color: "var(--cream)" }}
+                >
+                  Walk through it.{" "}
+                  <span style={{ fontStyle: "italic", color: "var(--gold-soft)" }}>
+                    Before you walk through it.
+                  </span>
+                </h2>
+              </div>
+              <p className="text-sm max-w-sm leading-relaxed" style={{ color: "rgba(245,239,230,0.6)" }}>
+                A full tour of the house, room by room &mdash; from the hallway and drawing room through to
+                the kitchen, the garden, and the bedrooms above.
+              </p>
+            </div>
+
+            <FilmPlayer />
+
+            <div className="mt-6 flex items-center justify-between flex-wrap gap-4">
+              <p className="text-xs" style={{ color: "rgba(245,239,230,0.42)" }}>
+                Best watched with sound on, or full screen.
+              </p>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] transition-opacity hover:opacity-70"
+                style={{ color: "var(--gold-soft)" }}
+              >
+                Book a viewing <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
           </div>
         </section>
 
@@ -2171,6 +2363,451 @@ export default function Claytonhame() {
 }
 
 // ---------- Sub-components ----------
+function FilmPlayer() {
+  const wrapRef = useRef(null);
+  const hostRef = useRef(null);
+  const playerRef = useRef(null);
+  const barRef = useRef(null);
+  const idleTimer = useRef(null);
+
+  const [started, setStarted] = useState(false);
+  const [ready, setReady] = useState(false);
+  const [playing, setPlaying] = useState(false);
+  const [ended, setEnded] = useState(false);
+  const [everPlayed, setEverPlayed] = useState(false);
+  const [muted, setMuted] = useState(false);
+  const [elapsed, setElapsed] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [idle, setIdle] = useState(false);
+  const [fullscreen, setFullscreen] = useState(false);
+  const [fallback, setFallback] = useState(false);
+
+  // Tear the player down if this ever unmounts.
+  useEffect(
+    () => () => {
+      try {
+        if (playerRef.current && playerRef.current.destroy) playerRef.current.destroy();
+      } catch (e) {
+        /* already gone */
+      }
+    },
+    []
+  );
+
+  // Progress ticker.
+  useEffect(() => {
+    if (!ready || !playing) return undefined;
+    const id = setInterval(() => {
+      const p = playerRef.current;
+      if (!p || !p.getCurrentTime) return;
+      setElapsed(p.getCurrentTime() || 0);
+      const d = p.getDuration() || 0;
+      if (d) setDuration(d);
+    }, 250);
+    return () => clearInterval(id);
+  }, [ready, playing]);
+
+  // Fade the controls away while the film runs and the pointer is still.
+  useEffect(() => {
+    if (!playing) {
+      setIdle(false);
+      return undefined;
+    }
+    const el = wrapRef.current;
+    const bump = () => {
+      setIdle(false);
+      clearTimeout(idleTimer.current);
+      idleTimer.current = setTimeout(() => setIdle(true), 2600);
+    };
+    const leave = () => setIdle(true);
+    bump();
+    if (el) {
+      el.addEventListener("pointermove", bump);
+      el.addEventListener("pointerleave", leave);
+    }
+    return () => {
+      if (el) {
+        el.removeEventListener("pointermove", bump);
+        el.removeEventListener("pointerleave", leave);
+      }
+      clearTimeout(idleTimer.current);
+    };
+  }, [playing]);
+
+  useEffect(() => {
+    const onFs = () => setFullscreen(Boolean(document.fullscreenElement));
+    document.addEventListener("fullscreenchange", onFs);
+    return () => document.removeEventListener("fullscreenchange", onFs);
+  }, []);
+
+  const start = () => {
+    if (started) return;
+    setStarted(true);
+    loadYouTubeApi()
+      .then((YT) => {
+        if (!hostRef.current || !YT || !YT.Player) {
+          setFallback(true);
+          return;
+        }
+        playerRef.current = new YT.Player(hostRef.current, {
+          videoId: FILM_ID,
+          host: "https://www.youtube-nocookie.com",
+          playerVars: {
+            autoplay: 1,
+            controls: 0,
+            rel: 0,
+            fs: 0,
+            playsinline: 1,
+            modestbranding: 1,
+            iv_load_policy: 3,
+            disablekb: 1,
+            cc_load_policy: 0,
+            origin: window.location.origin,
+          },
+          events: {
+            onReady: (e) => {
+              setReady(true);
+              setDuration(e.target.getDuration() || 0);
+              setMuted(Boolean(e.target.isMuted && e.target.isMuted()));
+              // Auto-captions stamp "[music]" across a film that has no
+              // dialogue; cc_load_policy alone does not always win.
+              try {
+                e.target.unloadModule("captions");
+                e.target.unloadModule("cc");
+              } catch (err) {
+                /* module was not loaded */
+              }
+              try {
+                e.target.playVideo();
+              } catch (err) {
+                /* autoplay blocked: our own play button covers it */
+              }
+            },
+            onStateChange: (e) => {
+              setPlaying(e.data === YT.PlayerState.PLAYING);
+              setEnded(e.data === YT.PlayerState.ENDED);
+              if (e.data === YT.PlayerState.PLAYING) {
+                setReady(true);
+                setEverPlayed(true);
+                setDuration(e.target.getDuration() || 0);
+              }
+            },
+            onError: () => setFallback(true),
+          },
+        });
+      })
+      .catch(() => setFallback(true));
+  };
+
+  const togglePlay = () => {
+    const p = playerRef.current;
+    if (!p) return;
+    if (playing) p.pauseVideo();
+    else p.playVideo();
+  };
+
+  const toggleMute = () => {
+    const p = playerRef.current;
+    if (!p || !p.isMuted) return;
+    if (p.isMuted()) {
+      p.unMute();
+      setMuted(false);
+    } else {
+      p.mute();
+      setMuted(true);
+    }
+  };
+
+  const toggleFullscreen = () => {
+    const el = wrapRef.current;
+    if (!el) return;
+    const done = document.fullscreenElement
+      ? document.exitFullscreen()
+      : el.requestFullscreen
+      ? el.requestFullscreen()
+      : null;
+    if (done && done.catch) done.catch(() => {});
+  };
+
+  const seekFromPointer = (clientX) => {
+    const bar = barRef.current;
+    const p = playerRef.current;
+    if (!bar || !p || !duration) return;
+    const r = bar.getBoundingClientRect();
+    const frac = Math.min(1, Math.max(0, (clientX - r.left) / r.width));
+    p.seekTo(frac * duration, true);
+    setElapsed(frac * duration);
+  };
+
+  const nudge = (delta) => {
+    const p = playerRef.current;
+    if (!p || !duration) return;
+    const t = Math.min(duration, Math.max(0, elapsed + delta));
+    p.seekTo(t, true);
+    setElapsed(t);
+  };
+
+  const replay = () => {
+    const p = playerRef.current;
+    if (!p) return;
+    p.seekTo(0, true);
+    p.playVideo();
+    setEnded(false);
+  };
+
+  const onKeyDown = (e) => {
+    if (!started) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        start();
+      }
+      return;
+    }
+    if (!ready) return;
+    if (e.key === " " || e.key === "k") {
+      e.preventDefault();
+      togglePlay();
+    } else if (e.key === "m") {
+      toggleMute();
+    } else if (e.key === "f") {
+      toggleFullscreen();
+    } else if (e.key === "ArrowRight") {
+      e.preventDefault();
+      nudge(5);
+    } else if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      nudge(-5);
+    }
+  };
+
+  const pct = duration ? Math.min(100, (elapsed / duration) * 100) : 0;
+  const controlsHidden = playing && idle;
+
+  return (
+    <div
+      ref={wrapRef}
+      tabIndex={0}
+      onKeyDown={onKeyDown}
+      aria-label={FILM_TITLE}
+      className="film-shell relative w-full overflow-hidden rounded-2xl outline-none"
+      style={{ aspectRatio: "16 / 9", background: "#0E0D0C" }}
+    >
+      {/* The player itself */}
+      {started && !fallback && (
+        <div className="absolute inset-0">
+          <div ref={hostRef} className="w-full h-full" />
+        </div>
+      )}
+
+      {/* If the player API is blocked, fall back to a plain privacy-mode embed */}
+      {started && fallback && (
+        <iframe
+          title={FILM_TITLE}
+          src={
+            "https://www.youtube-nocookie.com/embed/" +
+            FILM_ID +
+            "?autoplay=1&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&color=white"
+          }
+          allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+          allowFullScreen
+        />
+      )}
+
+      {/* Click anywhere on the picture to pause or resume */}
+      {started && !fallback && everPlayed && !ended && (
+        <button
+          type="button"
+          onClick={togglePlay}
+          aria-label={playing ? "Pause the film" : "Play the film"}
+          className="absolute inset-0 w-full h-full"
+          style={{ background: "transparent", border: "none", cursor: "pointer" }}
+        />
+      )}
+
+      {/* Poster, which doubles as the loading cover so there is no black flash */}
+      <div
+        className="absolute inset-0 transition-opacity duration-700"
+        style={{
+          opacity: everPlayed ? 0 : 1,
+          pointerEvents: started && (everPlayed || !ready) ? "none" : "auto",
+        }}
+      >
+        <img src={FILM_POSTER} alt="" className="w-full h-full object-cover" />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(18,16,14,0.52) 0%, rgba(18,16,14,0.40) 45%, rgba(18,16,14,0.80) 100%)",
+          }}
+        />
+        {!started && (
+          <button
+            type="button"
+            onClick={start}
+            tabIndex={-1}
+            aria-label="Play the film"
+            className="film-trigger absolute inset-0 w-full h-full flex flex-col items-center justify-center"
+            style={{ background: "transparent", border: "none", cursor: "pointer" }}
+          >
+            <span className="film-play flex items-center justify-center rounded-full">
+              <Play
+                className="w-6 h-6 md:w-7 md:h-7"
+                fill="currentColor"
+                strokeWidth={0}
+                style={{ marginLeft: 3 }}
+              />
+            </span>
+            <span
+              className="mt-6 text-xs uppercase tracking-[0.3em]"
+              style={{ color: "rgba(245,239,230,0.92)" }}
+            >
+              Watch the film
+            </span>
+          </button>
+        )}
+        {started && !ready && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="film-spinner" />
+          </div>
+        )}
+        {started && ready && !everPlayed && (
+          <button
+            type="button"
+            onClick={togglePlay}
+            aria-label="Play the film"
+            className="film-trigger absolute inset-0 w-full h-full flex flex-col items-center justify-center"
+            style={{ background: "transparent", border: "none", cursor: "pointer" }}
+          >
+            <span className="film-play flex items-center justify-center rounded-full">
+              <Play
+                className="w-6 h-6 md:w-7 md:h-7"
+                fill="currentColor"
+                strokeWidth={0}
+                style={{ marginLeft: 3 }}
+              />
+            </span>
+            <span
+              className="mt-6 text-xs uppercase tracking-[0.3em]"
+              style={{ color: "rgba(245,239,230,0.92)" }}
+            >
+              Watch the film
+            </span>
+          </button>
+        )}
+      </div>
+
+      {/* Our own controls */}
+      {started && !fallback && everPlayed && (
+        <div
+          className="absolute left-0 right-0 bottom-0 transition-opacity duration-300"
+          style={{
+            opacity: controlsHidden ? 0 : 1,
+            pointerEvents: controlsHidden ? "none" : "auto",
+            background: "linear-gradient(180deg, rgba(14,13,12,0) 0%, rgba(14,13,12,0.8) 100%)",
+          }}
+        >
+          <div className="px-4 md:px-6 pb-4 pt-14">
+            <div
+              ref={barRef}
+              className="film-bar"
+              role="slider"
+              tabIndex={-1}
+              aria-label="Seek"
+              aria-valuemin={0}
+              aria-valuemax={Math.round(duration)}
+              aria-valuenow={Math.round(elapsed)}
+              onClick={(e) => seekFromPointer(e.clientX)}
+            >
+              <div className="film-bar-fill" style={{ width: pct + "%" }} />
+              <div className="film-bar-knob" style={{ left: pct + "%" }} />
+            </div>
+            <div className="mt-3 flex items-center gap-3" style={{ color: "rgba(245,239,230,0.92)" }}>
+              <button
+                type="button"
+                className="film-btn"
+                onClick={togglePlay}
+                aria-label={playing ? "Pause" : "Play"}
+              >
+                {playing ? (
+                  <Pause className="w-4 h-4" fill="currentColor" strokeWidth={0} />
+                ) : (
+                  <Play className="w-4 h-4" fill="currentColor" strokeWidth={0} />
+                )}
+              </button>
+              <span
+                className="text-xs tracking-wide"
+                style={{ fontVariantNumeric: "tabular-nums", opacity: 0.85 }}
+              >
+                {fmtClock(elapsed)}
+                <span style={{ opacity: 0.45 }}> / {fmtClock(duration)}</span>
+              </span>
+              <div className="flex-1" />
+              <button
+                type="button"
+                className="film-btn"
+                onClick={toggleMute}
+                aria-label={muted ? "Unmute" : "Mute"}
+              >
+                {muted ? (
+                  <VolumeX className="w-4 h-4" strokeWidth={1.6} />
+                ) : (
+                  <Volume2 className="w-4 h-4" strokeWidth={1.6} />
+                )}
+              </button>
+              <button
+                type="button"
+                className="film-btn"
+                onClick={toggleFullscreen}
+                aria-label={fullscreen ? "Exit full screen" : "Full screen"}
+              >
+                {fullscreen ? (
+                  <Minimize className="w-4 h-4" strokeWidth={1.6} />
+                ) : (
+                  <Maximize className="w-4 h-4" strokeWidth={1.6} />
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* End of film: our own card, so no related-video grid appears */}
+      {started && !fallback && ended && (
+        <div className="absolute inset-0">
+          <img src={FILM_POSTER} alt="" className="w-full h-full object-cover" />
+          <div className="absolute inset-0" style={{ background: "rgba(18,16,14,0.74)" }} />
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-7 px-6 text-center">
+            <button
+              type="button"
+              onClick={replay}
+              aria-label="Watch again"
+              className="film-trigger flex flex-col items-center"
+              style={{ background: "transparent", border: "none", cursor: "pointer" }}
+            >
+              <span className="film-play flex items-center justify-center rounded-full">
+                <RotateCcw className="w-6 h-6" strokeWidth={1.5} />
+              </span>
+              <span
+                className="mt-5 text-xs uppercase tracking-[0.3em]"
+                style={{ color: "rgba(245,239,230,0.9)" }}
+              >
+                Watch again
+              </span>
+            </button>
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 px-6 py-3 text-xs uppercase tracking-[0.25em] rounded-full transition-opacity hover:opacity-85"
+              style={{ background: "var(--cream)", color: "var(--ink)" }}
+            >
+              Book a viewing <ArrowRight className="w-3.5 h-3.5" />
+            </a>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function LocalCategory({ icon: Icon, title, items }) {
   return (
     <div>
