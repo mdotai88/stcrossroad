@@ -2,53 +2,57 @@
 
 Interactive property microsite for Claytonhame, 76 St Cross Road, Winchester. Built for ffour Estates (legal seller: St Cross Limited, Company No. 16080695) with Knight Frank as sole agent.
 
+**Live at [stcross.ffour.co.uk](https://stcross.ffour.co.uk/).**
+
 ---
 
-## Deploy to Vercel (5 minutes, no command line needed)
+## Where it lives and how it deploys
 
-1. Sign in at **[vercel.com](https://vercel.com)** (free).
-2. From the dashboard, click **"Add New..."** → **"Project"**.
-3. Scroll to the bottom of the "Import Git Repository" page and click **"Continue with deploy without Git"** — or use the **Vercel CLI** (instructions below).
-4. **Drag this entire folder** onto the upload area.
-5. Vercel auto-detects Vite + React. Leave all defaults. Click **"Deploy"**.
-6. Wait ~60 seconds. You'll get a URL like `claytonhame-xyz.vercel.app` — that's your live site.
+- **Live URL:** <https://stcross.ffour.co.uk/>
+- **Host:** Vercel (`Server: Vercel`, `lhr1` region).
+- **Repository:** `mdotai88/stcrossroad` on GitHub. This bundle is a subfolder of that
+  repo, so Vercel's **Root Directory** for the project is `claytonhame-bundle` — the
+  folder holding `package.json`. Vercel auto-detects Vite + React from there.
+- **Deploys:** a push to `main` is all it takes. Vercel rebuilds and the new version is
+  live within a minute or so; nothing needs to be run locally and no dashboard step is
+  required.
 
-### Alternative: Vercel CLI
+### Making updates
 
-If drag-and-drop doesn't work:
+1. Edit the files — almost always just **`src/App.jsx`**, with `index.html` for meta
+   tags and SEO.
+2. Commit and push to `main`.
+3. Wait about a minute, then check the live site.
+
+To confirm a change really reached production rather than trusting the dashboard:
 
 ```bash
-npm install -g vercel
-cd claytonhame-bundle
-vercel
+curl -s https://stcross.ffour.co.uk/ | grep -o 'name="description" content="[^"]*"'
 ```
 
-Follow the prompts. It'll handle the rest.
+That returns the deployed meta description. For anything inside the React app, find the
+hashed bundle the page references and grep that instead:
+
+```bash
+curl -s https://stcross.ffour.co.uk/ | grep -oE 'src="/assets/[^"]*"'
+curl -s https://stcross.ffour.co.uk/assets/index-XXXX.js | grep -o 'some string'
+```
+
+A stale hash, or a string that isn't there, means the build hasn't landed yet.
 
 ---
 
-## Attach your subdomain (e.g. `stcrossroad.ffour.co.uk`)
+## The domain
 
-1. In Vercel: open the project → **Settings** → **Domains** → enter `stcrossroad.ffour.co.uk` → click **Add**.
-2. Vercel will show a **CNAME record** to add. Something like:
-   - **Type:** CNAME
-   - **Name:** `stcrossroad`
-   - **Value:** `cname.vercel-dns.com`
-3. In **GoDaddy**: My Products → DNS for **ffour.co.uk** → **Add Record** → enter the values above → Save.
-4. Wait 5–15 minutes. DNS propagates, Vercel auto-detects, SSL certificate auto-issues.
-5. Done. Buyers visiting `stcrossroad.ffour.co.uk` see the site with that URL in the address bar throughout.
+`stcross.ffour.co.uk` is already attached in Vercel (project → **Settings** →
+**Domains**) and resolves through a CNAME on **GoDaddy** (My Products → DNS for
+**ffour.co.uk**) pointing at the project's Vercel DNS target —
+`268fd974144e16e1.vercel-dns-017.com` as of November 2026. Vercel issues and renews the
+SSL certificate automatically.
 
----
-
-## Making updates
-
-When you want changes to the site:
-
-1. Replace **`src/App.jsx`** with the new version.
-2. In Vercel dashboard: project → **Deployments** → top-right menu → **Redeploy**, or upload the folder again.
-3. About 30 seconds later, the live site updates.
-
-If you set up a GitHub connection, you can just `git push` and Vercel redeploys automatically.
+Only touch this if the domain needs re-pointing: add the domain in Vercel first, use the
+exact CNAME value Vercel then shows (it is per-project, not the generic
+`cname.vercel-dns.com`), and allow 5–15 minutes for DNS and the certificate.
 
 ---
 
