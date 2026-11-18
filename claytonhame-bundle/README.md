@@ -120,8 +120,8 @@ Things to keep current:
 
 - The **Code Member logo** is year-stamped (2026) — replace it in
   `public/wp-content/uploads/2026/10/` when CCNH issues next year's version.
-- The **"Available Q2 2026"** date and chatbot answers must stay realistic (Code §3.2.1) —
-  update them if the programme moves.
+- The **"Available Now"** claim and the chatbot answers must stay realistic (Code §3.2.1) —
+  update them if the property stops being ready for immediate occupation.
 - The Knight Frank **brochure** must also carry the Code logo and subscription statement.
 
 ---

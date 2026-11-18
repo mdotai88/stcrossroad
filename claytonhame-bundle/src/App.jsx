@@ -36,7 +36,7 @@ const PROPERTY = {
   name: "Claytonhame",
   address: "76 St Cross Road, Winchester",
   postcode: "SO23",
-  available: "Q2 2026",
+  available: "Now",
   beds: 4,
   baths: "3.5",
   sqft: 1984,
@@ -491,7 +491,7 @@ const KB = [
     id: "completion",
     primary: ["completion", "available", "ready", "move in", "when can", "finished", "completion date"],
     secondary: ["q2", "2026"],
-    answer: "Claytonhame is scheduled to be available from Q2 2026. The property is chain free so you could move in as soon as conveyancing is complete.",
+    answer: "Claytonhame is finished and available now. The property is chain free, so you could move in as soon as conveyancing is complete.",
   },
   {
     id: "period",
@@ -1339,7 +1339,7 @@ export default function Claytonhame() {
                 { label: "Bathrooms", value: PROPERTY.baths, icon: Bath },
                 { label: "Sq ft", value: PROPERTY.sqft.toLocaleString(), icon: Ruler },
                 { label: "Guide price", value: "£1.325m", icon: HomeIcon },
-                { label: "Available", value: "Q2 2026", icon: Calendar },
+                { label: "Available", value: "Now", icon: Calendar },
               ].map((s) => (
                 <div
                   key={s.label}
