@@ -77,7 +77,8 @@ claytonhame-bundle/
 ├── public/
 │   ├── complaints-procedure.html   ← Complaints procedure page (Consumer Code §5.2)
 │   └── wp-content/uploads/         ← Self-hosted images, logos, floorplans,
-│                                      CCNH Code Member logo + Code v5 PDF (2026/10/)
+│                                      CCNH Code Member logo + Code v5 PDF (2026/10/),
+│                                      film poster (2026/11/film-poster.jpg)
 ├── index.html           ← HTML shell + meta tags / SEO
 ├── package.json         ← Project dependencies
 ├── vite.config.js       ← Build config
@@ -96,6 +97,37 @@ claytonhame-bundle/
 - **Lucide React** — icons
 
 All property images are self-hosted in `public/wp-content/uploads/` and deploy with the site. The concierge chat uses a built-in knowledge base — no external API required, no API key, no ongoing costs. Vercel Web Analytics provides private visit stats.
+
+---
+
+## The Film
+
+The full tour sits in its own **"The Film"** section directly below the hero, with a
+"Watch the film" button in the hero and an entry in both the desktop nav and the
+mobile menu (`#film`).
+
+The film is hosted on YouTube but plays inside our own chrome, driven by the IFrame
+Player API: no YouTube logo, no title bar, no "Watch on YouTube" button and no
+related-video grid at the end — that end screen is replaced by our own "Watch again"
+/ "Book a viewing" card. The controls (play/pause, clock, scrub bar, mute,
+fullscreen), click-to-pause and the keyboard shortcuts (space, arrows, M, F) are all
+ours, in the site palette.
+
+Nothing is requested from any Google domain until a visitor presses play, and
+playback then runs from `youtube-nocookie.com`. Until then the facade is the local
+poster. If the Player API is blocked, it falls back to a plain privacy-mode embed.
+
+The three things that define it live at the top of `src/App.jsx`:
+
+- `FILM_ID` — the YouTube video id. Replace it to swap the film; nothing else needs
+  to change.
+- `FILM_POSTER` — the still shown before play, currently cut from the hallway render.
+  Re-cut it from the new film if you swap the film, or the facade will not match.
+- `FILM_TITLE` — used for the iframe's accessible title.
+
+Keep the film consistent with the property as sold: if a room is changed after
+filming, either re-shoot or stop showing it, since the film is a sales claim like any
+other (Code §3.2.1).
 
 ---
 
@@ -122,6 +154,12 @@ Things to keep current:
   `public/wp-content/uploads/2026/10/` when CCNH issues next year's version.
 - The **"Available Now"** claim and the chatbot answers must stay realistic (Code §3.2.1) —
   update them if the property stops being ready for immediate occupation.
+- The **guide price** appears in several places that must agree: `PROPERTY.guidePrice`
+  in `src/App.jsx` (which drives the hero tile and the affordability calculator), the
+  chatbot's price answer, the two hard figures the chatbot quotes that are derived
+  from it (stamp duty and the monthly repayment), the share-sheet text, and the meta
+  description in `index.html`. Recompute the derived figures with the site's own
+  `calcStamp` band table and mortgage formula rather than by hand.
 - The Knight Frank **brochure** must also carry the Code logo and subscription statement.
 
 ---
