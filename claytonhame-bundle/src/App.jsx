@@ -43,7 +43,7 @@ const PROPERTY = {
   sqm: 184,
   tenure: "Freehold",
   warranty: "10-year Build Zone warranty",
-  guidePrice: 1395000,
+  guidePrice: 1325000,
   lat: 51.052875,
   lng: -1.321614,
   epc: { current: 80, potential: 86, currentBand: "C", potentialBand: "B" },
@@ -421,19 +421,19 @@ const KB = [
     id: "price",
     primary: ["price", "guide", "cost", "asking", "how much"],
     secondary: ["million", "m", "guide price"],
-    answer: "The guide price is £1,395,000.",
+    answer: "The guide price is £1,325,000.",
   },
   {
     id: "stamp",
     primary: ["stamp duty", "sdlt"],
     secondary: [],
-    answer: "Stamp duty at the £1,395,000 guide is £83,250 under standard residential rates (no surcharge). Scroll down to the affordability calculator to see the full breakdown — including how it changes if you adjust the price or your deposit.",
+    answer: "Stamp duty at the £1,325,000 guide is £76,250 under standard residential rates (no surcharge). Scroll down to the affordability calculator to see the full breakdown — including how it changes if you adjust the price or your deposit.",
   },
   {
     id: "mortgage",
     primary: ["mortgage", "monthly", "repayment", "payment", "afford"],
     secondary: ["interest", "rate", "term"],
-    answer: "Roughly £5,300 a month on a 25% deposit over 30 years at 4.5%. The calculator below this section lets you change any of those numbers to fit your circumstances.",
+    answer: "Roughly £5,035 a month on a 25% deposit over 30 years at 4.5%. The calculator below this section lets you change any of those numbers to fit your circumstances.",
   },
 
   // EPC / SYSTEMS
@@ -899,7 +899,7 @@ export default function Claytonhame() {
   const handleShare = async () => {
     const shareData = {
       title: "Claytonhame · 76 St Cross Road, Winchester",
-      text: "A four-bedroom refurbished period home in St Cross, Winchester. Guide £1.395m.",
+      text: "A four-bedroom refurbished period home in St Cross, Winchester. Guide £1.325m.",
       url: typeof window !== "undefined" ? window.location.href : "",
     };
     try {
@@ -1338,7 +1338,7 @@ export default function Claytonhame() {
                 { label: "Bedrooms", value: PROPERTY.beds, icon: BedDouble },
                 { label: "Bathrooms", value: PROPERTY.baths, icon: Bath },
                 { label: "Sq ft", value: PROPERTY.sqft.toLocaleString(), icon: Ruler },
-                { label: "Guide price", value: "£1.395m", icon: HomeIcon },
+                { label: "Guide price", value: "£1.325m", icon: HomeIcon },
                 { label: "Available", value: "Q2 2026", icon: Calendar },
               ].map((s) => (
                 <div
